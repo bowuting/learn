@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>setInterval</title>
+
+  </head>
+  <body>
+    <input type="button" name="time" value="5">
+    <img src="./imgs/boom.png" alt="" />
+  </body>
+  <script type="text/javascript">
+  function  bang(){
+    var img  = document.getElementsByTagName('img')[0];
+    var butt = document.getElementsByTagName('input')[0];
+    var time = parseInt(butt.value);
+      time -= 1;
+    butt.value = time;
+    //注意 这里的value是字符串。
+    if(butt.value == 0)
+    {
+      clearInterval(clock);
+      img.src = "./imgs/warn.png"
+    }
+  }
+     var clock = setInterval('bang()',1000);
+  </script>
+</html>

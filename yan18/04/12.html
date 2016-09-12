@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>开关灯泡</title>
+    <script type="text/javascript">
+      function toggle() {
+        var test1 = window.document.getElementById('test1');
+
+        //自己的写法：
+        //if(test1.src == "./imgs/on.jpg") {
+        //  test1.src = "./imgs/off.jpg";
+        //}
+        //else {
+        //  test1.src = "./imgs/on.jpg"
+        //}
+
+        //正确的写法：
+        if(test1.src.indexOf('on') >= 0 ) {
+          test1.src = "./imgs/off.jpg";
+        }
+        else {
+          test1.src = "./imgs/on.jpg"
+        }
+
+      }
+    </script>
+  </head>
+  <body>
+    <img id="test1" src="./imgs/on.jpg" alt="" onclick="toggle();" />
+
+
+  </body>
+</html>

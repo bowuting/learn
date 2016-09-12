@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>16-删除一个li</title>
+    <script type="text/javascript">
+      //该函数可以写在前面，，，因为点击该函数时，页面肯定加载完毕了
+      function del() {
+        var lis    =  document.getElementsByTagName('li');
+        var lastLi = lis[lis.length-1];
+        lastLi.parentNode.removeChild(lastLi);
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="删除最后一个Li" onclick="del();">
+    <ul>
+      <li>春</li>
+      <li>夏</li>
+      <li>秋</li>
+      <li>冬</li>
+    </ul>
+  </body>
+</html>

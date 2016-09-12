@@ -1,0 +1,78 @@
+use 
+set names 
+use 
+set names 
+insert into test(t1,t2) values('','')
+use 
+set names 
+insert into test(t1,t2) values('tttt1','ttt2')
+use boolshop
+set names utf8
+insert into test(t1,t2) values('tttt1','ttt2')
+use boolshop
+set names utf8
+insert into test(t1,t2) values('ttttone\"','ttt2\'')
+use boolshop
+set names utf8
+use boolshop
+set names utf8
+use boolshop
+set names utf8
+insert into test (t1,t2) values ('tsssne\"','ttt2\'')
+use boolshop
+set names utf8
+use boolshop
+set names utf8
+use boolshop
+set names utf8
+insert into test (t1,t2) values ('adminuser','adminuser')
+use boolshop
+set names utf8
+insert into test (0,1) values ('frontuser','frontuser')
+use boolshop
+set names utf8
+insert into test (t1,t2) values ('frontuser','frontuser')
+use boolshop
+set names utf8
+insert into  (t1,t2) values ('frontuser','frontuser')
+use boolshop
+set names utf8
+insert into test (t1,t2) values ('frontuser','frontuser')
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+select * from test
+use boolshop
+set names utf8
+insert into test (t1,t2) values ('frontuser','frontuser')
+use boolshop
+set names utf8
+use boolshop
+set names utf8
+insert into cate (catename,intro) values ('aaaa','introintor')
+use boolshop
+set names utf8
+insert into cate (catename,intro) values ('bbbb','dsfadsafdsafd')

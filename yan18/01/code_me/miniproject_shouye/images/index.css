@@ -1,0 +1,65 @@
+
+#container{
+  margin: 0 auto;
+  width: 1002px;
+}
+#header{
+  height:128px;
+  background: white url(./top_bg.jpg);
+  background-repeat: no-repeat;
+}
+#nav{
+  font-size: 20px;
+}
+#nav li{
+  margin-right: 1px;
+  float: left;
+}
+#nav a{
+  font:16px/37px '微软雅黑','黑体',sans-serif;
+  display: block;
+  width: 90px;
+  height: 37px;
+  text-align: center;
+}
+#nav a:hover{
+  color: white;
+  background-image:url(./nav_on.gif);
+}
+#images{
+    height:237px;
+    background-image: url(./about_banner.jpg);
+}
+#main {
+  /*background: blue;*/
+
+}
+#lside{
+  width: 700px;
+  height:600px;
+  /*background: red;*/
+}
+#subtitle{
+    width: 700px;
+    height:37px;
+    background: gray url(./index_main_top_bg.gif);
+
+}
+#subtitle img{
+  margin-top: 3px;
+  margin-left: 3px;
+  float: left;
+}
+#subtitle h1{
+  color: #151515;
+  float: left;
+  margin-left: 10px;
+  font:16px/37px 'Microsoft Yahei' , SimHei , sans-serif;
+}
+.four{
+  width: 300px;
+  height:200px;
+  float: left;
+  margin: 20px;
+  /*background: black;*/
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>联动菜单</title>
+    <script type="text/javascript">
+      function ld() {
+        var arry = [
+          [],
+          ['朝阳','海淀','门头沟'],
+          ['淮南','淮北','合肥']
+        ];
+        var opt = '';
+        var sel = document.getElementById('prov');
+        for (var i = 0,len = arry[sel.value].length; i < len; i++) {
+            opt = opt + '<option value="' + i + '">' + arry[sel.value][i] + '</option>'
+        }//字符串拼接是重点
+
+        document.getElementById('city').innerHTML = opt;
+
+        //alert(opt);
+      }
+    </script>
+  </head>
+  <body>
+    <select id="prov"class="" name="" onchange="ld();">
+      <option value="0">请选择</option>
+      <option value="1">北京</option>
+      <option value="2">安徽</option>
+    </select>
+    <select id="city"class="" name="" >
+      <option> </option>
+      <option> </option>
+
+      <option> </option>
+    </select>
+  </body>
+</html>

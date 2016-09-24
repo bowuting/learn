@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>bowuting's home page</title>
+    <style media="screen">
+
+      *{
+        margin: 0;
+        border: 0;
+        font-family: 'Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial;
+      }
+
+      a{
+        text-decoration:none;
+        display:block;
+      }
+
+      #title{
+        margin: 15px 0px 0px 50px;
+        font-size: 45px;
+      }
+      #fu{
+        margin: 0px 0px 15px 50px;
+        font-size: 20px;
+      }
+
+      #menu{
+          height: 50px;
+          background: #086ED5;
+        }
+      #m1{
+        margin-left:35px;
+        background: #A86EFA;
+      }
+
+
+      .menu:hover{background:#A86EFA;}
+      .menu{
+        height: 50px;
+        width: 60px;
+        float: left;
+        font-size: 20px;
+        color: white;
+
+      }
+      .pmenu{
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"class="">
+      <div id="title"class="">
+          bowuting's home page
+      </div>
+      <p id="fu">
+        形势先于蛮力
+      </p>
+    </div>
+    <div id="body"class="">
+
+      <div id="menu"class="" >
+          <a id="m1" class="menu" href="#"><p class="pmenu">日志</p></a>
+          <a id="m2" class="menu" href="#"><p class="pmenu">相册</p></a>
+          <a id="m3" class="menu" href="#"><p class="pmenu">关于</p></a>
+          <a id="m4" class="menu" href="#"><p class="pmenu">留言</p></a>
+      </div>
+
+
+    </div>
+    <div id="footer"class="">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+
+  // document.getElementById('menu').onclick = function (){
+  //   //this.style.backgroundColor = "#A86EFA";
+  //   this.children[0].style.backgroundColor = "#086ED5";
+  //   this.children[1].style.backgroundColor = "#086ED5";
+  //   this.children[2].style.backgroundColor = "#086ED5";
+  //   this.children[3].style.backgroundColor = "#086ED5";
+  //   //var x = this.children.length;
+  //   //alert(x);
+  // }
+
+    var x = ['m1','m2','m3','m4'];
+    for (var i = 0; i < x.length; i++) {
+
+      var ob = document.getElementById(x[i]);
+      ob.onclick = function (){
+
+        for (var i = 0; i < x.length; i++) {
+
+        document.getElementById(x[i]).style.backgroundColor="#086ED5";
+        }
+        this.style.backgroundColor = "#A86EFA";
+     }
+   }
+
+
+
+  // document.getElementById('m2').onclick = function (){
+  //
+  //   this.style.backgroundColor = "#A86EFA";
+  //
+  // }
+  // document.getElementById('m3').onclick = function (){
+  //
+  //   this.style.backgroundColor = "#A86EFA";
+  // }
+  // document.getElementById('m4').onclick = function (){
+  //
+  //   this.style.backgroundColor = "#A86EFA";
+  //
+  // }
+
+
+  //var targ = e.target;
+  //var tname = targ.tagName;
+        //alert(targ);
+    // var x = document.getElementsByClassName('menu').length;
+    //   alert(x);
+
+  </script>
+</html>

@@ -35,4 +35,10 @@ var_dump($res);
 //关闭连接
 $mysqli->close();
 
+
+
+
+
+
+
  ?>

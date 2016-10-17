@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>实时在线聊天</title>
+        <link rel="stylesheet" href="./dist/css/bootstrap.min.css" media="screen" title="no title">
+        <script src="https://cdn.wilddog.com/sdk/js/2.1.2/wilddog.js"></script>
+        <script src="jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <hr>
+                <div  class="col-md-4 col-md-offset-4">
+                    <div id="result">
+                        <p class="right">   </p>
+                        <p >   </p>
+                    </div>
+                    <hr>
+                    <div role="form">
+                        <div class="text-center">
+                            <input class="form-control" id="message" type="text" name="message" value="">
+                            <button   class="btn btn-primary "id="button" type="submit" name="button" >发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+    var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = j[1];
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+        var config = {
+            syncURL: "https://bowuting.wilddogio.com" //输入节点 URL
+        };
+
+        wilddog.initializeApp(config);
+        var ref = wilddog.sync().ref();
+
+        $("#button").click(function() {
+            var today=new Date();
+            // today.getHours() + ":" + today.getMinutes()+ ":" +today.getSeconds()
+            var content = $("#message").val();
+             if ($_GET['name'] == 'bowuting') {
+    		    var text =  "<h3 class='text-right'>" + content + "</h3>";
+            } else {
+                var text = "<h3 >" + content +  " </h3>";
+    		}
+
+    		ref.child('message').push(text);
+    	});
+
+        ref.child('message').on('child_added', function(snapshot) {
+
+            var text = snapshot.val();
+
+            // var textObj = $("<p class=\"\"></p>");
+
+            // textObj.text(text);
+            // console.log(text);
+    		$("#result").append(text);
+    		// moveObj(textObj);
+            $("#message").val('');
+
+    	});
+
+    // window.location.reload();//刷新当前页面.
+
+    </script>
+
+</html>

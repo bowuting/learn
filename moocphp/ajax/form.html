@@ -36,6 +36,21 @@
             <p id="createResule"></p>
         </div>
         <script type="text/javascript">
+        var $_GET = (function(){
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if(typeof(u[1]) == "string"){
+                u = u[1].split("&");
+                var get = {};
+                for(var i in u){
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
             document.getElementById("search").onclick = function(){
                 //发送ajax查询请求 并 处理
                 var request = new XMLHttpRequest();
@@ -51,6 +66,7 @@
                         }
                     }
                 }
+                console.log($_GET);
             }
             document.getElementById("save").onclick = function(){
                 //发送ajax查询请求 并 处理

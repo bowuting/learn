@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 class FormController extends Controller{
-    public function inster(){
+    public function insert(){
         $Form = D('Form');
         if ($Form->create()) {
             $result = $Form->add();

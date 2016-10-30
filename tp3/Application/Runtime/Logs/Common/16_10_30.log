@@ -10,3 +10,9 @@ INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
 INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
 ERR: 无法加载模块:Docs-assets
 
+[ 2016-10-30T16:34:25+08:00 ] ::1 /docs-assets/ico/favicon.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000560s ]
+ERR: 无法加载模块:Docs-assets
+

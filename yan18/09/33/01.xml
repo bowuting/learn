@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstroe>
+    <book>
+        <!-- 注意：天龙八部不是title的值  是title的子节点！！！ -->
+        <title>天龙八部</title>
+        <price>28.8</price>
+    </book>
+    <book>
+        <title>诗集</title>
+        <price>29.9</price>
+    </book>
+</bookstroe>

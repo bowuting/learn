@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>原生JS </h1>
+        <p>
+            <input type="text" name="kg" value="">公斤</p>
+            <p>
+                运费 <span></span>元
+            </p>
+        </p>
+    </body>
+    <script type="text/javascript">
+    //监听input的变化
+
+    //找到input对象
+    var inp= document.getElementsByTagName('input')[0];
+    var span = document.getElementsByTagName('span')[0];
+
+    //绑定事件
+     inp.oninput = function(){
+        var price = 10 * parseInt(this.value);
+        // console.log(price);
+        span.innerHTML =  price;
+    }
+
+    </script>
+</html>

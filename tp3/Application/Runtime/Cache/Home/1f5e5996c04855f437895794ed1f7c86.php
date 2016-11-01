@@ -5,10 +5,10 @@
         <title></title>
     </head>
     <body>
-        <form class="" action="/index.php/Home/Form/inster" method="post">
+        <form class="" action="/index.php/Home/Form/insert" method="post">
             标题： <input type="text" name="title" value=""><br/>
             内容： <textarea name="content" rows="8" cols="40"></textarea><br/>
-            <input type="submit" name="name" value="提交">
+                  <input type="submit" name="name" value="提交">
         </form>
     </body>
 </html>

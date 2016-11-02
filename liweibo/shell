@@ -1,0 +1,1 @@
+curl -d "access_token=2.00wXezLGd2twmDed6bbccfa60PbovF&status=dadwa" "https://api.weibo.com/2/statuses/update.json"

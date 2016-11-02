@@ -19,13 +19,13 @@
 
     <!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.min.css" rel="stylesheet"> -->
 
-    
+
 
   </head>
   <body>
       <hr>
       <div class="container">
-          <div class="row">
+          <div class="row text-center">
               <div class="col-md-2">
 
               </div>
@@ -41,6 +41,12 @@
                           <td>
                               时间
                           </td>
+                          <td>
+                              编辑
+                          </td>
+                          <td>
+                              删除
+                          </td>
                       </tr>
                       <volist name="list" id="vo">
                           <tr>
@@ -53,10 +59,16 @@
                               <td>
                                   {$vo.goodscat_createtime|date="Y-m-d  H-i-s",###}
                               </td>
+                              <td>
+                                  <button type="button" class="btn btn-warning"><a href="__URL__/updateGoodsCat/id/{$vo.goodscat_id}"><i class="glyphicon glyphicon-pencil"> 编辑</i></a></button>
+                              </td>
+                              <td>
+                                  <button type="button" class="btn btn-warning"><a href="__URL__/deleteGoodsCat/id/{$vo.goodscat_id}"><i class="glyphicon glyphicon-remove"> 删除</i></a></button>
+                              </td>
                           </tr>
                       </volist>
                   </table>
-                  <button type="button" class="btn btn-primary"  id="create">新增</button>
+                  <button type="button" class="btn btn-primary"  id="create"><i class="glyphicon glyphicon-plus"> 新增</i></button>
 
               </div>
               <div class="col-md-2">

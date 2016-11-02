@@ -19,13 +19,13 @@
 
     <!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.min.css" rel="stylesheet"> -->
 
-    
+
 
   </head>
   <body>
       <hr>
       <div class="container">
-          <div class="row">
+          <div class="row text-center">
               <div class="col-md-2">
 
               </div>
@@ -41,6 +41,12 @@
                           <td>
                               时间
                           </td>
+                          <td>
+                              编辑
+                          </td>
+                          <td>
+                              删除
+                          </td>
                       </tr>
                       <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                               <td>
@@ -52,9 +58,15 @@
                               <td>
                                   <?php echo (date("Y-m-d  H-i-s",$vo["goodscat_createtime"])); ?>
                               </td>
+                              <td>
+                                  <button type="button" class="btn btn-warning"><a href="/shop/index.php/Admin/Index/updateGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></a></button>
+                              </td>
+                              <td>
+                                  <button type="button" class="btn btn-warning"><a href="/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a></button>
+                              </td>
                           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                   </table>
-                  <button type="button" class="btn btn-primary"  id="create">新增</button>
+                  <button type="button" class="btn btn-primary"  id="create"><i class="glyphicon glyphicon-plus"> 新增</i></button>
 
               </div>
               <div class="col-md-2">

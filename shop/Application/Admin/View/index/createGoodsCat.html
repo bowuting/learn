@@ -31,10 +31,25 @@
               </tr>
               <tr>
                   <td>
+                      分类：
+                  </td>
+                  <td>
+                      <select class="" name="fid">
+                          <option value="0">根节点</option>
+                          <volist name="list" id="vo">
+                              <option value="{$vo.goodscat_id}"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> {$vo.goodscat_name}</option>
+                          </volist>
+
+                      </select>
+                      <!-- <input type="text" name="lev" value=""> -->
+                  </td>
+              </tr>
+              <tr>
+                  <td>
                       排序：
                   </td>
                   <td>
-                       <input type="text" name="sort" value="">
+                      <input type="text" name="sort" value="">
                   </td>
               </tr>
               <tr>

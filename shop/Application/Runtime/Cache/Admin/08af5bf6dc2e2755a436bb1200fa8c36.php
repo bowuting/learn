@@ -31,10 +31,23 @@
               </tr>
               <tr>
                   <td>
+                      分类：
+                  </td>
+                  <td>
+                      <select class="" name="fid">
+                          <option value="0">根节点</option>
+                          <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["goodscat_id"]); ?>"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> <?php echo ($vo["goodscat_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+
+                      </select>
+                      <!-- <input type="text" name="lev" value=""> -->
+                  </td>
+              </tr>
+              <tr>
+                  <td>
                       排序：
                   </td>
                   <td>
-                       <input type="text" name="sort" value="">
+                      <input type="text" name="sort" value="">
                   </td>
               </tr>
               <tr>

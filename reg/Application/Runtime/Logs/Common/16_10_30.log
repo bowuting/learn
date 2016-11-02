@@ -1,0 +1,48 @@
+[ 2016-10-30T16:13:31+08:00 ] ::1 /index.php/index/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-30T16:23:21+08:00 ] ::1 /docs-assets/ico/favicon.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+ERR: 无法加载模块:Docs-assets
+
+[ 2016-10-30T16:34:25+08:00 ] ::1 /docs-assets/ico/favicon.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000560s ]
+ERR: 无法加载模块:Docs-assets
+
+[ 2016-10-30T20:15:33+08:00 ] ::1 /index/form/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000694s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-30T20:15:39+08:00 ] ::1 /index/form
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000601s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-30T20:15:51+08:00 ] ::1 /index/form/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-30T20:15:53+08:00 ] ::1 /index/form/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+ERR: 无法加载模块:Index
+
+[ 2016-10-30T20:16:22+08:00 ] ::1 /homew/forme/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000301s ]
+ERR: 无法加载模块:Homew
+

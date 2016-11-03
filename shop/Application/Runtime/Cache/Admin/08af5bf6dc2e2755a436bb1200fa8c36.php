@@ -19,7 +19,7 @@
 
   </head>
   <body>
-      <form class="" action="/shop/index.php/Admin/Index/addGoodsCat" method="post">
+      <form class="" action="/github/www/shop/index.php/Admin/Index/addGoodsCat" method="post">
           <table class="table table-bordered">
               <tr>
                   <td>

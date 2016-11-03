@@ -21,10 +21,12 @@ class IndexController extends Controller {
     }
     public function addGoodsCat(){
 
-        print_r($_POST);
-        exit;
-        $data['goodscat_name'] = $_POST['name'];
-        $data['goodscat_sort'] = $_POST['sort'];
+        // print_r($_POST);
+        // exit;
+
+        // echo I('get.id'); // 相当于 $_GET['id']
+        $data['goodscat_name'] = I('post.name');
+        $data['goodscat_sort'] = I('post.sort');
         $data['goodscat_createtime'] = time();
 
         $goodsCat = M('goodsCat');

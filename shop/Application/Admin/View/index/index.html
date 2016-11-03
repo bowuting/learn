@@ -94,21 +94,25 @@
     <script type="text/javascript">
 
 
+    $(document).ready(function(){
+      $('#create').click(function(){
+          layer.open({
+            type: 2,
+          //   shade: 0.8,
+          skin: 'layui-layer-rim',
+            title:'新增商品分类',
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '__URL__/createGoodsCat',
+          // content: '__APP__/Admin/index/createGoodsCat',
+          cancle: function () {
+              location.reload();
+            }
+          });
+      });
+    });
 
-        $('#create').click(function(){
-            layer.open({
-              type: 2,
-            //   shade: 0.8,
-              title:'新增商品分类',
-              area: ['600px', '360px'],
-              shadeClose: true, //点击遮罩关闭
-              content: '__URL__/createGoodsCat',
-            // content: '__APP__/Admin/index/createGoodsCat',
-            cancle: function () {
-                location.reload();
-              }
-            });
-        });
+
 
     </script>
 

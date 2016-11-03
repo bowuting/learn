@@ -59,10 +59,10 @@
                                   <?php echo (date("Y-m-d  H-i-s",$vo["goodscat_createtime"])); ?>
                               </td>
                               <td>
-                                  <button type="button" class="btn btn-warning"><a href="/shop/index.php/Admin/Index/updateGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></a></button>
+                                  <button type="button" class="btn btn-warning"><a href="/github/www/shop/index.php/Admin/Index/updateGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></a></button>
                               </td>
                               <td>
-                                  <button type="button" class="btn btn-warning"><a href="/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a></button>
+                                  <button type="button" class="btn btn-warning"><a href="/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a></button>
                               </td>
                           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                   </table>
@@ -92,21 +92,25 @@
     <script type="text/javascript">
 
 
+    $(document).ready(function(){
+      $('#create').click(function(){
+          layer.open({
+            type: 2,
+          //   shade: 0.8,
+          skin: 'layui-layer-rim',
+            title:'新增商品分类',
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '/github/www/shop/index.php/Admin/Index/createGoodsCat',
+          // content: '/github/www/shop/index.php/Admin/index/createGoodsCat',
+          cancle: function () {
+              location.reload();
+            }
+          });
+      });
+    });
 
-        $('#create').click(function(){
-            layer.open({
-              type: 2,
-            //   shade: 0.8,
-              title:'新增商品分类',
-              area: ['600px', '360px'],
-              shadeClose: true, //点击遮罩关闭
-              content: '/shop/index.php/Admin/Index/createGoodsCat',
-            // content: '/shop/index.php/Admin/index/createGoodsCat',
-            cancle: function () {
-                location.reload();
-              }
-            });
-        });
+
 
     </script>
 

@@ -70,12 +70,20 @@
                    <?php echo ($res['email']); ?>
                </td>
            </tr>
+           <tr>
+               <td>
+                   报名时间
+               </td>
+               <td>
+                   <?php echo (date("Y-m-d  H:i:s",$res['create_time'])); ?>
+               </td>
+           </tr>
 
        </table>
 
 
        <div class="well">
-           如果有错误 请将错误信息发送至 bowutin@qq.com   主题:报名信息修改  谢谢
+           如果有错误 请将正确信息发送至 bowuting@qq.com   主题:报名信息修改  谢谢
        </div>
 
 

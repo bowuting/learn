@@ -29,7 +29,7 @@
 
 
 
-        <form class="layui-form" action="/tp3/index.php/Home/Index/find" method="post">
+        <form class="layui-form" action="/github/www/reg/index.php/Home/Index/find" method="post">
 
          <div class="layui-form-item">
              <input type="text" name="stuid" required  lay-verify="required" placeholder="学号" autocomplete="off" class="layui-input">

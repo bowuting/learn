@@ -59,10 +59,12 @@
                                   <?php echo (date("Y-m-d  H-i-s",$vo["goodscat_createtime"])); ?>
                               </td>
                               <td>
-                                  <button type="button" class="btn btn-warning"><a href="/github/www/shop/index.php/Admin/Index/updateGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></a></button>
+                                <!-- 因为有很多个按钮  所以   按钮选择 不能用id  要用class -->
+                                  <button type="button" class="btn btn-warning update_btn" id="update_btn"data-id="<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></button>
                               </td>
                               <td>
-                                  <button type="button" class="btn btn-warning"><a href="/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a></button>
+                                <button type="button" class="btn btn-danger delete_btn" id="delete_btn" data-id="<?php echo ($vo["goodscat_id"]); ?>" name="button"><i class="glyphicon glyphicon-remove"> 删除</i></button>
+                                  <!-- <a class="btn btn-danger" href="/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a> -->
                               </td>
                           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                   </table>
@@ -93,6 +95,45 @@
 
 
     $(document).ready(function(){
+      $('.delete_btn').click(function(){
+        var id = $(this).attr('data-id');
+        console.log(id);
+      $.get("/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,
+        function (data) {
+          if (data.status == 1) {
+            layer.open({
+            content: '删除成功'
+            ,btn: ['好的']
+            ,yes: function(index, layero){
+              window.location.reload();
+            },cancel: function(){
+              //右上角关闭回调
+            }
+          });
+            // window.location.reload();
+          }
+        });
+        });
+
+      $('.update_btn').click(function(){
+        var id = $(this).attr('data-id');
+        layer.open({
+          type: 2,
+        //   shade: 0.8,
+        skin: 'layui-layer-rim',
+          title:'修改商品分类',
+          area: ['600px', '360px'],
+          shadeClose: true, //点击遮罩关闭
+          content: '/github/www/shop/index.php/Admin/Index/updateGoodsCat/id/' + id,
+        // content: '/github/www/shop/index.php/Admin/index/createGoodsCat',
+        cancel:function() {
+            location.reload();
+          }
+        });
+      });
+
+
+
       $('#create').click(function(){
           layer.open({
             type: 2,
@@ -103,7 +144,7 @@
             shadeClose: true, //点击遮罩关闭
             content: '/github/www/shop/index.php/Admin/Index/createGoodsCat',
           // content: '/github/www/shop/index.php/Admin/index/createGoodsCat',
-          cancle: function () {
+          cancel:function() {
               location.reload();
             }
           });

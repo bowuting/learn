@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      function vote(){
+        // 1制造对象
+        var xhr = new XMLHttpRequest();
+
+        // 2:打开连接
+        xhr.open('GET','./02-vote.php',true); //异步 请求！！！
+
+        // 3发请求
+        xhr.send(null);
+
+
+        // 4如何获得返回信息
+        // 绑定状态变化的回调函数
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4) {
+              // alert('请求完成了');
+              if (this.responseText == '1') {
+                alert('投票成功');
+              } else {
+                alert('投票失败');
+              }
+          }
+          // var pg = document.getElementById('progress')
+          // pg.innerHTML = pg.innerHTML + this.readyState;
+        }
+
+      }
+    </script>
+  </head>
+  <body>
+    <img src="hh.jpg" alt="" />
+
+    <p>
+      <input type="button" name="name" value="投票方法2" onclick="vote();">
+    </p>
+    <div class="" id="progress">
+
+    </div>
+  </body>
+</html>

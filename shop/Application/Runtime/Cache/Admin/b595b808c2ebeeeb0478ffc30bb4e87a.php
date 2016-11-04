@@ -23,7 +23,7 @@
   <body>
       <hr>
       <div class="container">
-          <div class="text-center">
+          <div class="">
 
                   <table class="table  table-bordered table-hover table-striped ">
                       <tr>
@@ -45,7 +45,19 @@
                       </tr>
                       <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                               <td>
-                                  <?php echo ($vo["goodscat_name"]); ?>
+                                  <!-- <?php echo ($vo["goodscat_name"]); ?> -->
+
+
+
+
+                                  <?php if($vo["lev"] == 1 ): echo ($vo["goodscat_name"]); ?>
+                                    <?php else: ?>
+                                    <!-- <?php  echo $vo.lev; ?> -->
+
+                                    <?php echo (str_repeat('&nbsp;&nbsp;&nbsp;',$vo["lev"])); ?>|--<?php echo ($vo["goodscat_name"]); endif; ?>
+
+
+
                               </td>
                               <td>
                                   <?php echo ($vo["goodscat_sort"]); ?>

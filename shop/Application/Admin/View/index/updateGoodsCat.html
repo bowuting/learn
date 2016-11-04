@@ -36,10 +36,14 @@
                       分类：
                   </td>
                   <td>
-                      <select class="" name="fid">
-                          <option value="0">根节点</option>
+                      <select name="pid" default="{$res['goodscat_id']}">
+                          <!-- <option value="0">根节点</option> -->
                           <volist name="list" id="vo">
-                              <option value="{$vo.goodscat_id}"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> {$vo.goodscat_name}</option>
+                            <if condition="$vo.lev eq 1 ">
+                              <option value="{$vo.goodscat_id}">{$vo.goodscat_name}</option>
+                            <else />
+                              <option value="{$vo.goodscat_id}">{$vo.lev|str_repeat='&nbsp;&nbsp;&nbsp;',###}|--{$vo.goodscat_name}</option>
+                            </if>
                           </volist>
 
                       </select>
@@ -84,6 +88,7 @@
     $.post("__URL__/updateGoodsCatAction",
       {
         id:$("#id").val(),
+        pid:$('select').val(),
         name:$("#name").val(),
         sort:$("#sort").val()
       },
@@ -101,6 +106,13 @@
         }
       });
       });
+
+      $("select").each(function(index, element) {
+          // console.log($(this).attr('default'));
+          // console.log("option[value='"+$(this).attr('default')+"']");
+          $(element).find("option[value='"+$(this).attr('default')+"']").attr('selected','selected');
+      });
+
 
     });  // ready(function(){ 结束
 

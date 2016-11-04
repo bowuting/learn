@@ -34,10 +34,11 @@
                       分类：
                   </td>
                   <td>
-                      <select class="" name="fid">
+                      <select class="" name="pid">
                           <option value="0">根节点</option>
-                          <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["goodscat_id"]); ?>"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> <?php echo ($vo["goodscat_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-
+                          <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["lev"] == 1 ): ?><option value="<?php echo ($vo["goodscat_id"]); ?>"><?php echo ($vo["goodscat_name"]); ?></option>
+                            <?php else: ?>
+                              <option value="<?php echo ($vo["goodscat_id"]); ?>"><?php echo (str_repeat('&nbsp;&nbsp;&nbsp;',$vo["lev"])); ?>|--<?php echo ($vo["goodscat_name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
                       </select>
                       <!-- <input type="text" name="lev" value=""> -->
                   </td>
@@ -79,7 +80,8 @@
     $.post("/github/www/shop/index.php/Admin/Index/createGoodsCatAction",
       {
         name:$("#name").val(),
-        sort:$("#sort").val()
+        sort:$("#sort").val(),
+        pid:$("select").val()
       },
       function (status) {
         if (status == 1) {

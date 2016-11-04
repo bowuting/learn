@@ -3,8 +3,11 @@ namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){   // 默认方法  取出商品分类并显示
-        $goodsCat = M(goodsCat);
-        $list = $goodsCat->select();
+        $goodsCat = D('goodsCat');
+        $list = $goodsCat->getInfiniteGoodsCat();
+        // dump($list);
+        // exit;
+        // $list = $goodsCat->select();
         // $Page = new \Think\Page($count,2);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         // $show = $Page->show();
         // $list = $goodsCat->where('1')->order('goodscat_createtime')->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -13,14 +16,22 @@ class IndexController extends Controller {
         // $this->assign('page',$show);
         //  print_r($list);
 
+
+
         $this->display();
     }
     public function createGoodsCat(){
         // echo "string";
-        $goodsCat = M(goodsCat);
-        $list = $goodsCat->select();
+        // $goodsCat = M(goodsCat);
+        // $list = $goodsCat->select();
+        //
+        // $this->assign('list',$list);
 
+        $goodsCat = D('goodsCat');
+        $list = $goodsCat->getInfiniteGoodsCat();
         $this->assign('list',$list);
+        // dump($list);
+
         $this->display();
     }
 
@@ -32,6 +43,7 @@ class IndexController extends Controller {
 
         $data['goodscat_name'] = I('post.name');
         $data['goodscat_sort'] = I('post.sort');
+        $data['goodscat_pid'] = I('post.pid');
         $data['goodscat_createtime'] = time();
 
         $goodsCat = M('goodsCat');
@@ -77,6 +89,13 @@ class IndexController extends Controller {
       $res = $goodsCat->find($id);
       // print_r($res);
       // exit;
+
+      $goodsCat = D('goodsCat');
+      $list = $goodsCat->getInfiniteGoodsCat();
+      $this->assign('list',$list);
+
+      // dump($list);
+
       $this->assign('res',$res);
       $this->display();
   }
@@ -84,8 +103,10 @@ class IndexController extends Controller {
   {
 
         $id = I('post.id');
+        $data['goodscat_pid'] = I('post.sort');
         $data['goodscat_name'] = I('post.name');
         $data['goodscat_sort'] = I('post.sort');
+        $data['goodscat_pid'] = I('post.pid');
 
         $goodsCat = M('goodsCat');
 

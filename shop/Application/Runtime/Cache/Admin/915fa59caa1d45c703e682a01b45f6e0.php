@@ -36,9 +36,11 @@
                       分类：
                   </td>
                   <td>
-                      <select class="" name="fid">
-                          <option value="0">根节点</option>
-                          <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["goodscat_id"]); ?>"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> <?php echo ($vo["goodscat_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                      <select name="pid" default="<?php echo ($res['goodscat_id']); ?>">
+                          <!-- <option value="0">根节点</option> -->
+                          <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["lev"] == 1 ): ?><option value="<?php echo ($vo["goodscat_id"]); ?>"><?php echo ($vo["goodscat_name"]); ?></option>
+                            <?php else: ?>
+                              <option value="<?php echo ($vo["goodscat_id"]); ?>"><?php echo (str_repeat('&nbsp;&nbsp;&nbsp;',$vo["lev"])); ?>|--<?php echo ($vo["goodscat_name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 
                       </select>
                       <!-- <input type="text" name="lev" value=""> -->
@@ -82,6 +84,7 @@
     $.post("/github/www/shop/index.php/Admin/Index/updateGoodsCatAction",
       {
         id:$("#id").val(),
+        pid:$('select').val(),
         name:$("#name").val(),
         sort:$("#sort").val()
       },
@@ -99,6 +102,13 @@
         }
       });
       });
+
+      $("select").each(function(index, element) {
+          // console.log($(this).attr('default'));
+          // console.log("option[value='"+$(this).attr('default')+"']");
+          $(element).find("option[value='"+$(this).attr('default')+"']").attr('selected','selected');
+      });
+
 
     });  // ready(function(){ 结束
 

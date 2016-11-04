@@ -34,12 +34,15 @@
                       分类：
                   </td>
                   <td>
-                      <select class="" name="fid">
+                      <select class="" name="pid">
                           <option value="0">根节点</option>
                           <volist name="list" id="vo">
-                              <option value="{$vo.goodscat_id}"> <?php echo str_repeat("&nbsp;",$vo['goodscat_fid']+3);?> {$vo.goodscat_name}</option>
+                            <if condition="$vo.lev eq 1 ">
+                              <option value="{$vo.goodscat_id}">{$vo.goodscat_name}</option>
+                            <else />
+                              <option value="{$vo.goodscat_id}">{$vo.lev|str_repeat='&nbsp;&nbsp;&nbsp;',###}|--{$vo.goodscat_name}</option>
+                            </if>
                           </volist>
-
                       </select>
                       <!-- <input type="text" name="lev" value=""> -->
                   </td>
@@ -81,7 +84,8 @@
     $.post("__URL__/createGoodsCatAction",
       {
         name:$("#name").val(),
-        sort:$("#sort").val()
+        sort:$("#sort").val(),
+        pid:$("select").val()
       },
       function (status) {
         if (status == 1) {

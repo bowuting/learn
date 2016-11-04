@@ -17,20 +17,15 @@
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.min.css" rel="stylesheet"> -->
-
-
+    <link href="//cdn.bootcss.com/layer/2.4/skin/layer.min.css" rel="stylesheet">
 
   </head>
   <body>
       <hr>
       <div class="container">
-          <div class="row text-center">
-              <div class="col-md-2">
+          <div class="text-center">
 
-              </div>
-              <div class="col-md-8">
-                  <table class="table  table-bordered table-hover table-striped">
+                  <table class="table  table-bordered table-hover table-striped ">
                       <tr>
                           <td>
                               分类名称
@@ -59,23 +54,20 @@
                                   <?php echo (date("Y-m-d  H-i-s",$vo["goodscat_createtime"])); ?>
                               </td>
                               <td>
-                                <!-- 因为有很多个按钮  所以   按钮选择 不能用id  要用class -->
-                                  <button type="button" class="btn btn-warning update_btn" id="update_btn"data-id="<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-pencil"> 编辑</i></button>
+                                  <button type="button" class="btn btn-primary update_btn"  data-id="<?php echo ($vo["goodscat_id"]); ?>" ><i class="glyphicon glyphicon-pencil"> 编辑 </i></button>
+                                  <!-- 因为有很多个按钮  所以   按钮选择 不能用id  要用class -->
                               </td>
                               <td>
-                                <button type="button" class="btn btn-danger delete_btn" id="delete_btn" data-id="<?php echo ($vo["goodscat_id"]); ?>" name="button"><i class="glyphicon glyphicon-remove"> 删除</i></button>
+                                  <button type="button" class="btn btn-danger delete_btn"  data-id="<?php echo ($vo["goodscat_id"]); ?>" ><i class="glyphicon glyphicon-remove"> 删除 </i></button>
                                   <!-- <a class="btn btn-danger" href="/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a> -->
                               </td>
                           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                   </table>
-                  <button type="button" class="btn btn-primary"  id="create"><i class="glyphicon glyphicon-plus"> 新增</i></button>
 
-              </div>
-              <div class="col-md-2">
-
-              </div>
-          </div>
-      </div>
+                <button type="button" class="btn btn-primary create_btn"><i class="glyphicon glyphicon-plus"> 新增 </i></button>
+                <!-- 新增按钮 -->
+          </div> <!-- table  -->
+      </div> <!-- container  -->
 
 
       <hr>
@@ -91,36 +83,16 @@
   <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
 
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
 
     $(document).ready(function(){
-      $('.delete_btn').click(function(){
-        var id = $(this).attr('data-id');
-        console.log(id);
-      $.get("/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,
-        function (data) {
-          if (data.status == 1) {
-            layer.open({
-            content: '删除成功'
-            ,btn: ['好的']
-            ,yes: function(index, layero){
-              window.location.reload();
-            },cancel: function(){
-              //右上角关闭回调
-            }
-          });
-            // window.location.reload();
-          }
-        });
-        });
 
       $('.update_btn').click(function(){
         var id = $(this).attr('data-id');
-        layer.open({
+        layer.open({                                  // 更新 打开弹窗
           type: 2,
-        //   shade: 0.8,
-        skin: 'layui-layer-rim',
+          skin: 'layui-layer-rim',
           title:'修改商品分类',
           area: ['600px', '360px'],
           shadeClose: true, //点击遮罩关闭
@@ -134,22 +106,47 @@
 
 
 
-      $('#create').click(function(){
-          layer.open({
+      $('.delete_btn').click(function(){
+        var id = $(this).attr('data-id');
+        // attr() 方法设置或返回被选元素的属性和值。
+        // 当该方法用于返回属性值，则返回第一个匹配元素的值。
+        // 当该方法用于设置属性值，则为匹配元素设置一个或多个属性/值对。
+        // console.log(id);
+      $.get("/github/www/shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,   // Ajax GET  请求
+        function (status) {
+          if (status == 1) {
+            layer.open({
+            content: '删除成功',
+            btn: ['好的'],
+            yes: function(){
+                window.location.reload()},
+            // cancel: function(){
+            //     //右上角关闭回调
+            //     window.location.reload()}
+              });
+            }
+        });
+        });
+
+
+
+
+
+      $('.create_btn').click(function(){
+          layer.open({                              // 添加  打开弹窗
             type: 2,
-          //   shade: 0.8,
-          skin: 'layui-layer-rim',
+            skin: 'layui-layer-rim',
             title:'新增商品分类',
             area: ['600px', '360px'],
             shadeClose: true, //点击遮罩关闭
             content: '/github/www/shop/index.php/Admin/Index/createGoodsCat',
-          // content: '/github/www/shop/index.php/Admin/index/createGoodsCat',
+            //content: '/github/www/shop/index.php/Admin/index/createGoodsCat',
           cancel:function() {
               location.reload();
             }
           });
       });
-    });
+    });  // ready(function(){ 结束
 
 
 

@@ -19,14 +19,14 @@
 
   </head>
   <body>
-      <form class="" action="/github/www/shop/index.php/Admin/Index/addGoodsCat" method="post">
+      <form class="" action="/github/www/shop/index.php/Admin/Index/createGoodsCatAction" method="post">
           <table class="table table-bordered">
               <tr>
                   <td>
                       分类名称：
                   </td>
                   <td>
-                      <input type="text" name="name" value="">
+                      <input type="text" name="name" id="name" value="">
                   </td>
               </tr>
               <tr>
@@ -47,12 +47,13 @@
                       排序：
                   </td>
                   <td>
-                      <input type="text" name="sort" value="">
+                      <input type="text" name="sort" id="sort" value="">
                   </td>
               </tr>
               <tr>
                   <td colspan="2" class="text-center">
                       <input  type="submit" class="btn btn-primary"  value="提交">
+                      <button type="button"  class="btn btn-primary create_action_btn" name="button">ajax提交</button>
                   </td>
               </tr>
           </table>
@@ -69,6 +70,36 @@
 
 
   <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+
+    $(".create_action_btn").click(function(){
+    $.post("/github/www/shop/index.php/Admin/Index/createGoodsCatAction",
+      {
+        name:$("#name").val(),
+        sort:$("#sort").val()
+      },
+      function (status) {
+        if (status == 1) {
+          layer.open({
+          content: '添加成功',
+          btn: ['好的'],
+          yes: function(){
+              window.location.reload()}
+          // cancel: function(){
+          //     //右上角关闭回调
+          //     window.location.reload()}
+            });
+        }
+      });
+      });
+
+    });  // ready(function(){ 结束
+
+
+  </script>
 
 
 </html>

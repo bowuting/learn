@@ -43,19 +43,23 @@ class IndexController extends Controller{
 
 
     }
-    public function read(){
-        $this->display();
-
-    }
+    // public function read(){
+    //     $this->display();
+    //
+    // }
     public function find(){
         $User = M('User');
         $res = $User->find($_POST['stuid']);
         if ($res) {
-            $this->assign('res',$res);
-            $this->display();
-        } else {
-            $this->error('非法输入 请联系管理员！');
+          $json =  json_encode($res);
+          echo $json;
+          //echo $res['name'];
+            // $this->assign('res',$res);
+            // $this->display();
         }
+        // else {
+        //     $this->error('非法输入 请联系管理员！');
+        // }
 
 
     }

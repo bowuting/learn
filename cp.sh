@@ -1,1 +1,1 @@
-cp -r * ../../github/www
+cp -R * /Users/bowuting/work/github/www

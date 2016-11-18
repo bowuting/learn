@@ -16,13 +16,14 @@
 <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/github/my_shop/Public/wangEditor/dist/css/wangEditor.min.css" />
+<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
+
+<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
 
   </head>
   <body>
 
-      <form class="" action="/github/my_shop/index.php/Admin/Index/updateGoodsCatAction" method="post">
+      <form class="" action="/my_shop/index.php/Admin/Index/updateGoodsCatAction" method="post">
           <table class="table table-bordered">
               <tr>
                   <td>
@@ -95,7 +96,7 @@
   $(document).ready(function(){
 
     $(".update_action_btn").click(function(){
-    $.post("/github/my_shop/index.php/Admin/Index/updateGoodsCatAction",
+    $.post("/my_shop/index.php/Admin/Index/updateGoodsCatAction",
       {
         id:$("#id").val(),
         pid:$('select').val(),

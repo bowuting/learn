@@ -9,7 +9,7 @@
 <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
 
 
-<link rel="stylesheet"	href="/my_shop/Public/using/validator/jquery.validator.css">
+<link rel="stylesheet"	href="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
 
 </head>
@@ -95,8 +95,8 @@
 
 
 
-<script type="text/javascript" src="/my_shop/Public/using/validator/jquery.validator.js"></script>
-<script type="text/javascript" src="/my_shop/Public/using/validator/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 
 <script type="text/javascript">

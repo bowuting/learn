@@ -21,7 +21,8 @@
 <![endif]-->
 
 <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/github/my_shop/Public/wangEditor/dist/css/wangEditor.min.css" />
+
+<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
 
   </head>
   <body>
@@ -36,14 +37,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/github/my_shop/index.php/home/">首页</a>
+            <a class="navbar-brand" href="/my_shop/index.php/home/">首页</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/github/my_shop/index.php/Admin/">分类管理</a></li>
-                <li><a href="/github/my_shop/index.php/Admin/Goods">商品管理</a></li>
+                <li><a href="/my_shop/index.php/Admin/">分类管理</a></li>
+                <li><a href="/my_shop/index.php/Admin/Goods">商品管理</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
@@ -129,8 +130,8 @@
           title:'修改商品分类',
           area: ['600px', '360px'],
           shadeClose: true, //点击遮罩关闭
-          content: '/github/my_shop/index.php/Admin/Index/updateGoodsCat/id/' + id,
-        // content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
+          content: '/my_shop/index.php/Admin/Index/updateGoodsCat/id/' + id,
+        // content: '/my_shop/index.php/Admin/index/createGoodsCat',
         cancel:function() {
             location.reload();
           }
@@ -145,7 +146,7 @@
         // 当该方法用于返回属性值，则返回第一个匹配元素的值。
         // 当该方法用于设置属性值，则为匹配元素设置一个或多个属性/值对。
         // console.log(id);
-      $.get("/github/my_shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,   // Ajax GET  请求
+      $.get("/my_shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,   // Ajax GET  请求
         function (status) {
           if (status == 1) {
             layer.open({
@@ -172,8 +173,8 @@
             title:'新增商品分类',
             area: ['600px', '360px'],
             shadeClose: true, //点击遮罩关闭
-            content: '/github/my_shop/index.php/Admin/Index/createGoodsCat',
-            //content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
+            content: '/my_shop/index.php/Admin/Index/createGoodsCat',
+            //content: '/my_shop/index.php/Admin/index/createGoodsCat',
           cancel:function() {
               location.reload();
             }

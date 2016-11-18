@@ -18,11 +18,12 @@
 <![endif]-->
 
 <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/github/my_shop/Public/wangEditor/dist/css/wangEditor.min.css" />
+
+<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
 
     </head>
     <body>
-        <form action="/github/my_shop/index.php/Admin/Goods/updateGoods" method="post" enctype="multipart/form-data">
+        <form action="/my_shop/index.php/Admin/Goods/updateGoods" method="post" enctype="multipart/form-data">
           <input type="heddin" name="id" value="<?php echo ($goodsOne["goods_id"]); ?>">
         <table class="table table-bordered">
             <tr>
@@ -96,8 +97,8 @@
 
 <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
 
-
-    <script type="text/javascript" src="/github/my_shop/Public/wangEditor/dist/js/wangEditor.min.js"></script>
+    <script type="text/javascript" src="//cdn.bowuting.com/cdn/wangEditor/dist/js/wangEditor.min.js"></script>
+    <!-- <script type="text/javascript" src="/my_shop/Public/wangEditor/dist/js/wangEditor.min.js"></script> -->
     <script type="text/javascript">
         var editor = new wangEditor('desc');
         editor.create();

@@ -29,7 +29,7 @@
 
 
 
-         <form class="layui-form" action="/github/www/reg/index.php/Home/Index/insert" method="post">
+         <form class="layui-form" action="/reg/index.php/Home/Index/insert" method="post">
 
           <div class="layui-form-item">
               <input type="text" id="name" name="name" required  lay-verify="required" placeholder="姓名" autocomplete="off" class="layui-input">
@@ -61,7 +61,7 @@
 
 
       <blockquote class="layui-elem-quote layui-quote-nm">
-        <a href="/github/www/reg/index.php/Home/Index/read" class="layui-btn" >戳我查看自己的报名信息</a>
+        <a href="/reg/index.php/Home/Index/read" class="layui-btn" >戳我查看自己的报名信息</a>
       </blockquote>
 
       <blockquote  id="foot"class="layui-elem-quote" >有问题联系:bowuting@qq.com </blockquote>
@@ -83,7 +83,7 @@
               layer.alert("您的电话号码不是11位！");
               return;
           }
-           $.post("/github/www/reg/index.php/Home/Index/insert",
+           $.post("/reg/index.php/Home/Index/insert",
              {
                name:$("#name").val(),
                stuid:$("#stuid").val(),

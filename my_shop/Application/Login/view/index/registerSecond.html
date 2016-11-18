@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+
+    <include file="./Public/HomeCommon/head.html" />
+
+</head>
+<body>
+
+
+<div class="ui container">
+
+    <include file="./Public/HomeCommon/nav.html" />
+    <div class="ui grid">
+        <div class="sixteenth wide column">
+            <form class="" action="__URL__/registerLast" method="post">
+                <div class="ui input">
+                    手机号码：
+                    <input type="text" name="phone"  disabled="disabled" value="{$data.phone}">
+                </div>
+                <p>
+
+                </p>
+                <div class="ui input">
+                    短信验证码：
+                    <input type="text" name="phone_verify" placeholder="验证码"  >
+                </div>
+                <p>
+                    
+                </p>
+
+                <input class="ui primary button" type="submit"  value="提交"  >
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+<include file="./Public/HomeCommon/js.html" />
+
+
+</html>

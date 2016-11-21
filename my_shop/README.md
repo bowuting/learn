@@ -2,7 +2,11 @@
 
 #后台
 
+<<<<<<< HEAD
     ### 分类管理
+=======
+   分类管理
+>>>>>>> 1b5ed861bcbd9ca40cc438a8d75a263030abd18b
               * 1、>thinkPHP的三大自动
               <pre><code>
                 class GoodsCatModel extends Model {

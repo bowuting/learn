@@ -2,7 +2,7 @@
 
 #后台
 
-    ###分类管理
+   分类管理
               * 1、>thinkPHP的三大自动
               <pre><code>
                 class GoodsCatModel extends Model {

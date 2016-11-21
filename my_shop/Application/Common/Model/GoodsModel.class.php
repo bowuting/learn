@@ -98,7 +98,7 @@ class GoodsModel extends Model{
         }
 
         // dump($order);
-        dump($con);
+        // dump($con);
         $result =  $m -> where($con)
             ->order($o)
             ->join("LEFT JOIN x_goods_cat ON x_goods_cat.goodscat_id = x_goods.goods_cid")
@@ -132,11 +132,7 @@ class GoodsModel extends Model{
         // exit;
     }
 
-    public function ueditor()
-  {
-      $data = new \Org\Util\Ueditor();
-      echo $data->output();
-  }
+
 
 
 }

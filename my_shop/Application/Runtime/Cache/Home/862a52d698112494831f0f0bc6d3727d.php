@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
 
 
-<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
 
 
-<link rel="stylesheet"	href="/my_shop/Public/using/validator/jquery.validator.css">
+<link rel="stylesheet"	href="//cdn.bowuting.com/nice/dist/jquery.validator.css">
 
 
 </head>
@@ -19,34 +19,47 @@
 <div class="ui container">
 
     <div class="ui menu">
-    <a class="item" href="/my_shop/index.php/Home/">
+    <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
-    <a class="item" href="/my_shop/index.php/admin/">
+    <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery/cid/0">
         商品列表
     </a>
-    <a class="item" href="/my_shop/index.php/Login/Index/registerFirst">
-        注册
-    </a>
-    <form class="item" action="/my_shop/index.php/Home/Index/gallery/" method="get">
+    <?php
+ if(empty($_SESSION['uid'])){ ?>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/registerFirst">
+            注册
+        </a>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/signin">
+            登录
+        </a>
+
+    <?php  } else { ?>
+
+      <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
+          登出
+      </a>
+    <?php  } ?>
+
+    <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>
+
+    <form class="item" action="/github/my_shop/index.php/Home/Index/gallery/cid/0/" method="get">
     <div class="ui input">
         <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品名搜索</button>
+        <button type="submit" class="ui basic button">商品搜索</button>
     </div>
     </form>
 
 </div>
 
+
     <div class="ui grid">
 
         <div class="eight wide column">
-          <form class="" action="/my_shop/index.php/Home/Index/addshopcart" method="post">
-              <input type="hidden" id="goods_id" name="goods_id" value="<?php echo ($goodsInfo['goods_id']); ?>">
-              <input type="submit"  value="加入购物车">
-          </form>
+
           <h2 class="ui header"><?php echo ($goodsInfo['goods_name']); ?></h2>
 
           <hr>
@@ -58,9 +71,18 @@
           <img src="<?php echo ($goodsInfo['goods_pic']); ?>" alt="" />
         </div>
           <div class="three wide column">
-            <button class="ui primary button add-shopcart-btn"><i class="add to cart icon"></i>加入购物车 </button>
+            <form class=""  method="post">
+              <button type="button" class="" id="reduce-btn">-</button>
+              <input id="num" style="width:30px" type="text" name="num" value="1"
+              data-rule="数量: required; integer; range(1~10); data-timely;">
+              <button type="button" name="add" class="" id="add-btn">+</button>
+
+              <!-- <input type="button" name="name" value="加入购物车" class="ui primary button add-shopcart-btn"> -->
+              <button type="button"class="ui primary button add-shopcart-btn"><i class="add to cart icon"></i>加入购物车 </button>
+
+              </form>
             <hr>
-            <button class="ui olive button my-shopcart-btn"><i class="add to cart icon"></i>我的购物车 </button>
+            <a  href="/github/my_shop/index.php/Home/Index/shopcart"><i class="add to cart icon"></i>我的购物车</a>
 
           </div>
 
@@ -72,44 +94,57 @@
 
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.js"></script>
-<script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.js"></script>
+<script src="//cdn.bootcss.com/layer/2.4/layer.min.js"></script>
 
 
-
-<script type="text/javascript" src="/my_shop/Public/using/validator/jquery.validator.js"></script>
-<script type="text/javascript" src="/my_shop/Public/using/validator/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/local/zh-CN.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
+
       $(".add-shopcart-btn").click(function(){
         // alert('加入购物车');
-        
-        $.post("/my_shop/index.php/Home/Index/addshopcart",
+        var goodsid="<?php echo ($_GET['goods_id']); ?>";
+        var num = $('#num').val();
+        var isgoods = "1";
+
+        $.post("/github/my_shop/index.php/Home/Index/addshopcart",
           {
-            id:$("#goods_id").val(),
+            goodsid:goodsid,
+            num:num,
+            isgoods:isgoods
           },
-          function (status) {
-            if (status == 1) {
-              layer.open({
-              content: '添加成功',
-              btn: ['好的'],
-              yes: function(){
-                  window.location.reload()}
-              // cancel: function(){
-              //     //右上角关闭回调
-              //     window.location.reload()}
-                });
+          function (data,status) {
+
+            if (data == 1) {
+              layer.alert('添加成功');
+            } else {
+              layer.alert('添加失败');
             }
           });
           // alert('加入购物车');
       });
 
+      $("#add-btn").click(function(){
+          var val = $('#num').val();
+          val = parseInt(val);
+          val += 1;
+          $('#num').val(val);
+          // console.log(val);
 
-      $(".my-shopcart-btn").click(function(){
-          // alert('我的购物车');
+    });
 
-      });
+    $("#reduce-btn").click(function(){
+        var val = $('#num').val();
+        val = parseInt(val);
+        val -= 1;
+        $('#num').val(val);
+        // console.log(val);
+
+  });
+
 
 
     });

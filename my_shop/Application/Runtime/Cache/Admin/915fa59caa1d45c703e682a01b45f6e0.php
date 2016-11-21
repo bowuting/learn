@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
 <!-- Bootstrap -->
-<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+<!-- bootstrap css -->
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,14 +18,16 @@
 <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
+<!-- layer css -->
+<link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
 
-<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
+<!-- wangEditor css -->
+<link rel="stylesheet" href="//cdnsh.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" rel="stylesheet">
 
   </head>
   <body>
 
-      <form class="" action="/my_shop/index.php/Admin/Index/updateGoodsCatAction" method="post">
+      <form class="" action="/github/my_shop/index.php/Admin/Index/updateGoodsCatAction" method="post">
           <table class="table table-bordered">
               <tr>
                   <td>
@@ -85,10 +89,15 @@
   
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
+<!-- layer js -->
 <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+
+<!-- wangEditor js -->
+<script src="//cdnsh.bowuting.com/cdn/wangEditor/dist/js/wangEditor.min.js"></script>
 
 
   <script type="text/javascript">
@@ -96,7 +105,7 @@
   $(document).ready(function(){
 
     $(".update_action_btn").click(function(){
-    $.post("/my_shop/index.php/Admin/Index/updateGoodsCatAction",
+    $.post("/github/my_shop/index.php/Admin/Index/updateGoodsCatAction",
       {
         id:$("#id").val(),
         pid:$('select').val(),

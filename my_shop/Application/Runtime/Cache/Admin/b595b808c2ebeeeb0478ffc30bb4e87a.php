@@ -7,11 +7,13 @@
     <title>商品分类</title>
 
     <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
 <!-- Bootstrap -->
-<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+<!-- bootstrap css -->
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,33 +22,40 @@
 <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<!-- layer css -->
 <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
 
-<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
+<!-- wangEditor css -->
+<link rel="stylesheet" href="//cdnsh.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" rel="stylesheet">
+
 
   </head>
+
   <body>
+
       
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <!-- <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/my_shop/index.php/home/">首页</a>
-        </div>
+            <a class="navbar-brand" href="/github/my_shop/index.php/home/">首页</a>
+        </div> -->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/my_shop/index.php/Admin/">分类管理</a></li>
-                <li><a href="/my_shop/index.php/Admin/Goods">商品管理</a></li>
+                <li><a href="/github/my_shop/index.php/home/">首页</a></li>
+                <li><a href="/github/my_shop/index.php/Admin/">分类管理</a></li>
+                <li><a href="/github/my_shop/index.php/Admin/Goods">商品管理</a></li>
+                <li><a href="#">用户管理</a></li>
+                <li><a href="/github/my_shop/index.php/Home/Index/gallery">画廊</a></li>
             </ul>
-
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
@@ -111,10 +120,15 @@
   
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
+<!-- layer js -->
 <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+
+<!-- wangEditor js -->
+<script src="//cdnsh.bowuting.com/cdn/wangEditor/dist/js/wangEditor.min.js"></script>
 
 
   <script type="text/javascript">
@@ -130,8 +144,8 @@
           title:'修改商品分类',
           area: ['600px', '360px'],
           shadeClose: true, //点击遮罩关闭
-          content: '/my_shop/index.php/Admin/Index/updateGoodsCat/id/' + id,
-        // content: '/my_shop/index.php/Admin/index/createGoodsCat',
+          content: '/github/my_shop/index.php/Admin/Index/updateGoodsCat/id/' + id,
+        // content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
         cancel:function() {
             location.reload();
           }
@@ -146,7 +160,7 @@
         // 当该方法用于返回属性值，则返回第一个匹配元素的值。
         // 当该方法用于设置属性值，则为匹配元素设置一个或多个属性/值对。
         // console.log(id);
-      $.get("/my_shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,   // Ajax GET  请求
+      $.get("/github/my_shop/index.php/Admin/Index/deleteGoodsCat/id/" + id,   // Ajax GET  请求
         function (status) {
           if (status == 1) {
             layer.open({
@@ -173,8 +187,8 @@
             title:'新增商品分类',
             area: ['600px', '360px'],
             shadeClose: true, //点击遮罩关闭
-            content: '/my_shop/index.php/Admin/Index/createGoodsCat',
-            //content: '/my_shop/index.php/Admin/index/createGoodsCat',
+            content: '/github/my_shop/index.php/Admin/Index/createGoodsCat',
+            //content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
           cancel:function() {
               location.reload();
             }

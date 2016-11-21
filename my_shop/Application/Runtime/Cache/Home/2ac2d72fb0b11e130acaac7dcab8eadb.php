@@ -1,15 +1,15 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head lang="cn">
-
+      <title>画廊</title>
     <meta charset="UTF-8">
 
 
-<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
 
 
-<link rel="stylesheet"	href="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
+<link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
 
 </head>
@@ -18,26 +18,45 @@
 
 <div class="ui container">
 
-    <div class="ui menu">
-    <a class="item" href="/my_shop/index.php/Home/">
+    <br>
+<div class="ui menu">
+    <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
-    <a class="item" href="/my_shop/index.php/admin/">
+    <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery">
         商品列表
     </a>
-    <a class="item" href="/my_shop/index.php/Login/Index/registerFirst">
-        注册
-    </a>
-    <form class="item" action="/my_shop/index.php/Home/Index/gallery/" method="get">
-    <div class="ui input">
-        <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品名搜索</button>
-    </div>
-    </form>
+    <?php
+ if(empty($_SESSION['uid'])){ ?>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/registerFirst">
+            注册
+        </a>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/signin">
+            登录
+        </a>
 
+    <?php  } else { ?>
+
+      <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
+          登出
+      </a>
+    <?php  } ?>
+
+    <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>
+
+    <!-- <form class="item" action="/github/my_shop/index.php/Home/Index/gallery" method="get">
+      <div class="ui input">
+          <input id="search" type="text"  name="keyword" placeholder="Search...">
+          <button id="searchbtn" type="submit" class="ui basic button">商品搜索</button>
+      </div>
+    </form> -->
+    <div class="ui input">
+      <input id="search" type="text"  name="keyword" placeholder="Search...">
+      <a id="searchbtn" href="javascript:void(0)" class="ui basic button">搜索</a>
+    </div>
 </div>
 
 
@@ -47,20 +66,19 @@
             <table class="ui basic table">
               <thead>
                 <tr>
-                  <th> <a href="/my_shop/index.php/Home/Index/gallery/cid/0">全部分类</a></th>
+                  <th> <a href="/github/my_shop/index.php/Home/Index/gallery">全部分类</a></th>
                 </tr>
               </thead>
               <tbody>
                  <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                          <td>
 
-                             <?php if($vo["lev"] == 1): ?><a href="/my_shop/index.php/Home/Index/gallery/cid/<?php echo ($vo["goodscat_id"]); ?>">|--<?php echo ($vo["goodscat_name"]); ?></a>
+                             <?php if($vo["lev"] == 1): ?><a href="/github/my_shop/index.php/Home/Index/gallery/cid/<?php echo ($vo["goodscat_id"]); ?>">|--<?php echo ($vo["goodscat_name"]); ?></a>
                                  <?php elseif($vo["lev"] == 2): ?>
-                                 &nbsp;&nbsp;&nbsp;&nbsp;  <a href="/my_shop/index.php/Home/Index/gallery/cid/<?php echo ($vo["goodscat_id"]); ?>">|--<?php echo ($vo["goodscat_name"]); ?></a><?php endif; ?>
-
+                                 &nbsp;&nbsp;&nbsp;&nbsp;  <a href="/github/my_shop/index.php/Home/Index/gallery/cid/<?php echo ($vo["goodscat_id"]); ?>">|--<?php echo ($vo["goodscat_name"]); ?></a><?php endif; ?>
 
                          </td>
-                         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                      </tr><?php endforeach; endif; else: echo "" ;endif; ?>
               </tbody>
             </table>
         </div>
@@ -93,21 +111,18 @@
 
             <div class="ui link cards">
 
-            <?php if(is_array($goodsList)): $i = 0; $__LIST__ = $goodsList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goodsvo): $mod = ($i % 2 );++$i;?><div class="card" >
-                  <!-- <div class="image"> -->
-                  <a href="/my_shop/index.php/Home/Index/goods/goods_id/<?php echo ($goodsvo["goods_id"]); ?>"><img width="260px" height="260px" src="<?php echo ($goodsvo["goods_pic"]); ?>" alt="" /></a>
+                <?php if(is_array($goodsList)): $i = 0; $__LIST__ = $goodsList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goodsvo): $mod = ($i % 2 );++$i;?><div class="card" >
+                      <a href="/github/my_shop/index.php/Home/Index/goods/goods_id/<?php echo ($goodsvo["goods_id"]); ?>"><img width="260px" height="260px" src="<?php echo ($goodsvo["goods_pic"]); ?>" alt="" /></a>
+                      <div class="content">
+                        <div class="header"><?php echo ($goodsvo["goods_name"]); ?></div>
+                        <div class="description"><?php echo ($goodsvo["goods_desc"]); ?></div>
+                      </div>
+                      <div class="extra content">
+                        <span class="right floated"><?php echo (date("Y-m-d  ",$goodsvo["goods_createtime"])); ?></span>
 
-                  <!-- </div> -->
-                  <div class="content">
-                    <div class="header"><?php echo ($goodsvo["goods_name"]); ?></div>
-                    <div class="description"><?php echo ($goodsvo["goods_desc"]); ?></div>
-                  </div>
-                  <div class="extra content">
-                    <span class="right floated"><?php echo (date("Y-m-d  ",$goodsvo["goods_createtime"])); ?></span>
-
-                    <span><i class="user icon"></i> <?php echo ($goodsvo['goods_price']/100); ?>元</span>
-                  </div>
-                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                        <span><i class="user icon"></i> <?php echo ($goodsvo['goods_price']/100); ?>元</span>
+                      </div>
+                    </div><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
 
         </div>
@@ -119,12 +134,12 @@
 
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.js"></script>
-<script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.js"></script>
+<script src="//cdn.bootcss.com/layer/2.4/layer.min.js"></script>
 
 
-<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
-<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 
 <script type="text/javascript">
@@ -138,13 +153,13 @@
             var reg = new RegExp('/color/' + oldvalue);
             // alert(newvalue);
             if (newvalue == "all") {
-                location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"");
+                location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"");
             } else {
                 if (oldvalue == "") {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0"+"/color/"+newvalue;
+                    location.href="/github/my_shop/index.php/Home/Index/gallery"+"/color/"+newvalue;
 
                 } else {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"/color/"+newvalue);
+                    location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"/color/"+newvalue);
                 }
             }
 
@@ -159,13 +174,13 @@
             var reg = new RegExp('/price/' + oldvalue);
             // alert(newvalue);
             if (newvalue == "all") {
-                location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"");
+                location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"");
             } else {
                 if (oldvalue == "") {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0"+"/price/"+newvalue;
+                    location.href="/github/my_shop/index.php/Home/Index/gallery"+"/price/"+newvalue;
 
                 } else {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"/price/"+newvalue);
+                    location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"/price/"+newvalue);
                 }
             }
         });
@@ -178,9 +193,9 @@
             var reg = new RegExp('/price_2/' + oldvalue);
             // alert(newvalue);
                 if (oldvalue == "") {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0"+"/price_2/"+newvalue;
+                    location.href="/github/my_shop/index.php/Home/Index/gallery"+"/price_2/"+newvalue;
                 } else {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"/price_2/"+newvalue);
+                    location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"/price_2/"+newvalue);
                 }
         });
 
@@ -192,10 +207,22 @@
             var reg = new RegExp('/time/' + oldvalue);
             // alert(newvalue);
                 if (oldvalue == "") {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0"+"/time/"+newvalue;
+                    location.href="/github/my_shop/index.php/Home/Index/gallery"+"/time/"+newvalue;
                 } else {
-                    location.href="/my_shop/index.php/Home/Index/gallery/cid/0".replace(reg,"/time/"+newvalue);
+                    location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"/time/"+newvalue);
                 }
+        });
+
+        $('#searchbtn').click(function () {
+          var newvalue = $('#search').val();
+          // alert(val);
+          var oldvalue = "<?php echo ($_GET['keyword']); ?>";
+          var reg = new RegExp('/keyword/' + oldvalue);
+          if (oldvalue == "") {
+              location.href="/github/my_shop/index.php/Home/Index/gallery"+"/keyword/"+newvalue;
+          } else {
+              location.href="/github/my_shop/index.php/Home/Index/gallery".replace(reg,"/keyword/"+newvalue);
+          }
         });
 
 

@@ -3,10 +3,11 @@
 *admin默认控制器
 *
 *用来显示商品列表
-* @author      richard<e421083458@163.com>
+* @author      bowuting@qq.com
 * @version     $Id$
 * @since       1.0
 */
+
 
 namespace Admin\Controller;
 use Think\Controller;

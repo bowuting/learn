@@ -82,6 +82,7 @@ class GoodsController extends CommonController{
       $GoodsCat = D('GoodsCat');
       $list = $GoodsCat -> getInfiniteGoodsCat();
       $this -> assign('list',$list);
+      dump($list);
 
       $Goods = D('Goods');
       $id = I('get.id');

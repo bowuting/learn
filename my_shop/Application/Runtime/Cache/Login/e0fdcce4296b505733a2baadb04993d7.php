@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
 
 
-<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
 
 
-<link rel="stylesheet"	href="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
+<link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
 
 </head>
@@ -18,26 +18,45 @@
 
 <div class="ui container">
 
-    <div class="ui menu">
-    <a class="item" href="/my_shop/index.php/Home/">
+    <br>
+<div class="ui menu">
+    <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
-    <a class="item" href="/my_shop/index.php/admin/">
+    <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery">
         商品列表
     </a>
-    <a class="item" href="/my_shop/index.php/Login/Index/registerFirst">
-        注册
-    </a>
-    <form class="item" action="/my_shop/index.php/Home/Index/gallery/" method="get">
-    <div class="ui input">
-        <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品名搜索</button>
-    </div>
-    </form>
+    <?php
+ if(empty($_SESSION['uid'])){ ?>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/registerFirst">
+            注册
+        </a>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/signin">
+            登录
+        </a>
 
+    <?php  } else { ?>
+
+      <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
+          登出
+      </a>
+    <?php  } ?>
+
+    <a  class="item" href="/github/my_shop/index.php/Login/Index/shopcart">我的购物车</a>
+
+    <!-- <form class="item" action="/github/my_shop/index.php/Home/Index/gallery" method="get">
+      <div class="ui input">
+          <input id="search" type="text"  name="keyword" placeholder="Search...">
+          <button id="searchbtn" type="submit" class="ui basic button">商品搜索</button>
+      </div>
+    </form> -->
+    <div class="ui input">
+      <input id="search" type="text"  name="keyword" placeholder="Search...">
+      <a id="searchbtn" href="javascript:void(0)" class="ui basic button">搜索</a>
+    </div>
 </div>
 
     <div class="ui grid">
@@ -49,7 +68,7 @@
 
             </div>
 
-            <form class="" action="/my_shop/index.php/Login/Index/registerSecond" method="post">
+            <form class="" action="/github/my_shop/index.php/Login/Index/registerSecond" method="post">
                 <table class="ui table">
                     <tr>
                         <td>
@@ -62,7 +81,7 @@
                                 <input type="text" name="phone" placeholder="手机号码"
                                 data-ok=''
                                 data-rule-phone="[/^1[3-9]\d{9}$/, '请输入正确的手机号码']"
-                                data-rule="手机号码: required; phone;remote[post:/my_shop/index.php/Login/Index/ajaxIsThisPhoneRegistered/, phone];">
+                                data-rule="手机号码: required; phone;remote[post:/github/my_shop/index.php/Login/Index/ajaxIsThisPhoneRegistered/, phone];">
                             </div>
                         </td>
                     </tr>
@@ -75,7 +94,7 @@
                             <div class="ui input">
                                 <input type="text" name="verify" placeholder="验证码"
                                 data-ok=''
-                                data-rule="验证码: required; remote[post:/my_shop/index.php/Login/Index/ajaxCheckVerify/, verify];">
+                                data-rule="验证码: required; remote[post:/github/my_shop/index.php/Login/Index/ajaxCheckVerify/, verify];">
                             </div>
                         </td>
                     </tr>
@@ -90,13 +109,12 @@
 
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.js"></script>
-<script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.js"></script>
+<script src="//cdn.bootcss.com/layer/2.4/layer.min.js"></script>
 
 
-
-<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
-<script type="text/javascript" src="//cdn.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 
 <script type="text/javascript">

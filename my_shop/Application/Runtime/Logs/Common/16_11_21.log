@@ -1,0 +1,18 @@
+[ 2016-11-21T09:12:59+08:00 ] ::1 /github/my_shop/index.php/__APP__/Login/Index/signin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+ERR: 无法加载模块:__APP__
+
+[ 2016-11-21T09:13:20+08:00 ] ::1 /github/my_shop/index.php/__URL__/Login/Index/signin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+ERR: 无法加载模块:__URL__
+
+[ 2016-11-21T09:13:36+08:00 ] ::1 /github/my_shop/index.php/__URL__/Login/Index/signin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+ERR: 无法加载模块:__URL__
+

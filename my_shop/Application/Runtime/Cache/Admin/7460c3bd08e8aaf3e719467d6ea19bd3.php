@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <title>商品展示</title>
         <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
 <!-- Bootstrap -->
-<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+<!-- bootstrap css -->
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,9 +19,11 @@
 <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<!-- layer css -->
 <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet">
 
-<link rel="stylesheet" href="//cdn.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" media="screen" title="no title">
+<!-- wangEditor css -->
+<link rel="stylesheet" href="//cdnsh.bowuting.com/cdn/wangEditor/dist/css/wangEditor.min.css" rel="stylesheet">
 
     </head>
     <body>
@@ -27,23 +31,25 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <!-- <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/my_shop/index.php/home/">首页</a>
-        </div>
+            <a class="navbar-brand" href="/github/my_shop/index.php/home/">首页</a>
+        </div> -->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/my_shop/index.php/Admin/">分类管理</a></li>
-                <li><a href="/my_shop/index.php/Admin/Goods">商品管理</a></li>
+                <li><a href="/github/my_shop/index.php/home/">首页</a></li>
+                <li><a href="/github/my_shop/index.php/Admin/">分类管理</a></li>
+                <li><a href="/github/my_shop/index.php/Admin/Goods">商品管理</a></li>
+                <li><a href="#">用户管理</a></li>
+                <li><a href="/github/my_shop/index.php/Home/Index/gallery">画廊</a></li>
             </ul>
-
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
@@ -78,12 +84,12 @@
 
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary update_btn"  data-id="<?php echo ($vo["goods_id"]); ?>" ><i class="glyphicon glyphicon-pencil"> <?php echo ($vo["goods_id"]); ?>编辑 </i></button>
+                        <button type="button" class="btn btn-primary update_btn"  data-id="<?php echo ($vo["goods_id"]); ?>" ><i class="glyphicon glyphicon-pencil"> 编辑 </i></button>
                         <!-- 因为有很多个按钮  所以   按钮选择 不能用id  要用class -->
                     </td>
                     <td>
                         <button type="button" class="btn btn-danger delete_btn"  data-id="<?php echo ($vo["goods_id"]); ?>" ><i class="glyphicon glyphicon-remove"> 删除 </i></button>
-                        <!-- <a class="btn btn-danger" href="/my_shop/index.php/Admin/Goods/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a> -->
+                        <!-- <a class="btn btn-danger" href="/github/my_shop/index.php/Admin/Goods/deleteGoodsCat/id/<?php echo ($vo["goodscat_id"]); ?>"><i class="glyphicon glyphicon-remove"> 删除</i></a> -->
                     </td>
                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </table>
@@ -92,10 +98,15 @@
     
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
+<!-- layer js -->
 <script src="//cdn.bootcss.com/layer/2.4/layer.js"></script>
+
+<!-- wangEditor js -->
+<script src="//cdnsh.bowuting.com/cdn/wangEditor/dist/js/wangEditor.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -106,12 +117,12 @@
                   title:'新增商品',
                   area: ['800px', '600px'],
                   // shadeClose: true, //点击遮罩关闭
-                  content: '/my_shop/index.php/Admin/Goods/createGoods',
+                  content: '/github/my_shop/index.php/Admin/Goods/createGoods',
                   closeBtn: 2,
                 shift: 0,
                 maxmin: true,
                 moveType: 0,
-                  //content: '/my_shop/index.php/Admin/index/createGoodsCat',
+                  //content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
                 cancel:function() {
                     location.reload();
                   }
@@ -126,12 +137,12 @@
                   title:'更改商品',
                   area: ['800px', '600px'],
                   // shadeClose: true, //点击遮罩关闭
-                  content: '/my_shop/index.php/Admin/Goods/updateGoods?id=' + id,
+                  content: '/github/my_shop/index.php/Admin/Goods/updateGoods?id=' + id,
                   closeBtn: 2,
                 shift: 0,
                 maxmin: true,
                 moveType: 0,
-                  //content: '/my_shop/index.php/Admin/index/createGoodsCat',
+                  //content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
                 cancel:function() {
                     location.reload();
                   }

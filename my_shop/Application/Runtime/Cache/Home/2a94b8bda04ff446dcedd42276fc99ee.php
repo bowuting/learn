@@ -6,7 +6,11 @@
         <meta charset="UTF-8">
 
 
-<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
+<!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
+
+
+<link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
     </head>
     <body>
@@ -15,28 +19,54 @@
 
 
         <div class="ui container">
-            <div class="ui menu">
+            <br>
+<div class="ui menu">
     <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
     <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery">
         商品列表
     </a>
-    <form action="/github/my_shop/index.php/Home/Index/gallery/" method="get">
+    <?php
+ if(empty($_SESSION['uid'])){ ?>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/registerFirst">
+            注册
+        </a>
+        <a class="item" href="/github/my_shop/index.php/Login/Index/signin">
+            登录
+        </a>
+
+    <?php  } else { ?>
+
+      <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
+          登出
+      </a>
+    <?php  } ?>
+
+    <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>
+
+    <!-- <form class="item" action="/github/my_shop/index.php/Home/Index/gallery" method="get">
+      <div class="ui input">
+          <input id="search" type="text"  name="keyword" placeholder="Search...">
+          <button id="searchbtn" type="submit" class="ui basic button">商品搜索</button>
+      </div>
+    </form> -->
     <div class="ui input">
-        <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品名搜索</button>
+      <input id="search" type="text"  name="keyword" placeholder="Search...">
+      <a id="searchbtn" href="javascript:void(0)" class="ui basic button">搜索</a>
     </div>
-    </form>
 </div>
 
 
             <div class="ui grid">
-                <div class="three wide column">312312</div>
-                <div class="eight wide column">312321</div>
+                <div class="sixteen wide column">
+
+                  <h1>这是首页</h1>
+                </div>
+
             </div>
 
         </div>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+
+    <include file="./Public/HomeCommon/head.html" />
+
+</head>
+<body>
+
+
+<div class="ui container">
+    <include file="./Public/HomeCommon/nav.html" />
+
+    <div class="ui grid">
+        <div class="sixteen wide column" >
+          <!-- <div ng-app="">
+ 	          <p>名字 : <input type="text" ng-model="name"></p>
+ 	          <h1>Hello {{name}}</h1>
+          </div> -->
+          <form class="" action="index.html" method="post">
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>
+                      <input type="checkbox" class="checkbox-all" data-check="all">  全选
+
+                    </th>
+                    <th>名称</th>
+                    <th>图片</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+
+                  </tr>
+                </thead>
+
+                <volist name="list" id="vo">
+                  <tr>
+                    <td>
+                        <input type="checkbox" data-check="{$vo.goods_id}" class="checkbox">
+                    </td>
+                    <td>
+                      {$vo.goods_name}
+                    </td>
+                    <td>
+                      <img width="50px" height="50px"src="{$vo.goods_pic}" alt="" />
+                    </td>
+                    <td>
+                      <p data-onePrice="{$vo.goods_id}" >
+                        {$vo['goods_price']/100}
+                      </p>
+                    </td>
+                    <td>
+                      <button class="reduce" data-reduce="{$vo.goods_id}" type="button"  >-</button>
+
+                      <span data-quantity="{$vo.goods_id}" style="width:30px" type="text" name="num"  > {$vo['mycart_quantity']} </span>
+                      <button class="add" data-add="{$vo.goods_id}" type="button"  >+</button>
+
+                    </td>
+                    <td>
+
+                      <p data-subtotal="{$vo.goods_id}" class="price">
+
+                        {$vo['goods_price']/100*$vo['mycart_quantity']}
+                      </p>
+                    </td>
+                  </tr>
+
+                </volist>
+                <tr>
+                  <td colspan="6">
+                    <span style="float: right">
+                      总价：<span  id="all-price" >0</span>元
+                    </span>
+                  </td>
+                </tr>
+              </table>
+          </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<include file="./Public/HomeCommon/js.html" />
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+    function sub(con,goodsid){
+        // console.log(con);
+        // console.log('data-' + con);
+
+        console.log(goodsid);
+        var onePrice =  parseInt($('[data-onePrice="'+ goodsid + '"]').text());
+        var quantity = parseInt($('[data-quantity="'+ goodsid + '"]').text());
+        var Subtotal = 0;
+
+        if (con == 'add') {
+            quantity += 1;
+        } else {
+          if (quantity <= 1) {
+            layer.alert('不能再减了~');
+            return false;
+          }
+            quantity -= 1;
+
+        }
+
+        Subtotal = quantity * onePrice;
+
+        $('[data-quantity="'+ goodsid + '"]').text(quantity);
+        $('[data-subtotal="'+ goodsid + '"]').text(Subtotal);
+    }
+
+
+      $(".add").click(function(){
+        var goodsid = $(this).attr('data-add');
+        sub('add',goodsid);
+
+        allPrice();
+      });
+
+      $(".reduce").click(function(){
+        var goodsid = $(this).attr('data-reduce');
+        sub('reduce',goodsid);
+
+       allPrice();
+      });
+
+
+      function allPrice() {
+
+        var allPrice = 0;
+
+        $(".checkbox").each(function () {
+          // if ($(this).is(':checked')) {
+          //   console.log($(this).attr('data-check'));
+          // }
+          // return false;
+          if($(this).is(':checked')){
+
+              var goodsid = $(this).attr('data-check');
+              var subtotalPrice =  parseInt($('[data-subtotal="'+ goodsid + '"]').text());
+
+              allPrice += subtotalPrice;
+
+            }});
+
+          $('#all-price').text(allPrice);
+      }
+
+      $(".checkbox-all").click(function(){
+        if($(this).is(':checked')){
+
+              var isAll = $(this).attr('data-check');
+              if (isAll == 'all') {
+
+                $('input:checkbox').attr("checked",'checked');
+                // console.log(isAll);
+              }
+
+            }
+            allPrice();
+
+        });
+
+
+
+        $(".checkbox").click(function(){
+
+             allPrice();
+
+          });
+
+
+
+
+
+
+    });
+
+</script>
+
+</html>

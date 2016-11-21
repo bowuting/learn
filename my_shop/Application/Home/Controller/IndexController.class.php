@@ -2,30 +2,53 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+
+    // 首页
     public function index(){
         $this->display();
     }
-    public function gallery(){
-        $cid = I('get.cid');
-        $keyword = I('get.keyword');
-        $color = I('get.color');
-        $price = I('get.price');
-        $price_2 = I('get.price_2');
-        $time = I('get.time');
-        // echo $cid;
-        $GoodsCatModel = D(GoodsCat);
-        $result = $GoodsCatModel->getInfiniteGoodsCat();
-        $this->assign('list',$result);
 
+    public function gallery(){
+
+      // 得到所有get传值
+      $cid = I('get.cid');
+      $keyword = I('get.keyword');
+      $color = I('get.color');
+      $price = I('get.price');
+      $price_2 = I('get.price_2');
+      $time = I('get.time');
+
+      $GoodsCatModel = D('GoodsCat');
+      $result = $GoodsCatModel->getInfiniteGoodsCat();  //得到无限极分类
+      $this->assign('list',$result);
         $GoodsModel = D(Goods);
+
+      if ($cid == ""){
+          $cid = $GoodsCatModel->getLastChildId($GoodsCatModel->getChildID('0'));  //如果没有cid则说明是取所有的  则得到所有的二级分类
+      } else {
+          if ($GoodsCatModel->isHaveChild($cid)) {              //如果有cid  则看该cid有没有子类  如果有子类  则得到其所有子类（也就是二级分类）
+              $cid = $GoodsCatModel->getChildID($cid);
+          }
+      }
+
+      $goodsList = $GoodsModel->getGoods('',$cid,$keyword,$color,$price,$price_2,$time);
+      $this->assign('goodsList',$goodsList);
+
+      $this->display();
+
+        exit;
+
+
+
+
+
+
 
 
         // if (empty(I('get.'))) {
             // $goodsList = $GoodsModel->getGoods(null,null,null,$color);
         // } else {
-            if ($GoodsCatModel->isHaveChild($cid)) {
-                $cid  = $GoodsCatModel->getChildID($cid);
-            }
+
             if (I('get.cid') === '0') {
               echo "string";
               $cid = $GoodsCatModel->getLastChildId($cid);
@@ -53,52 +76,47 @@ class IndexController extends Controller {
         $this->display();
     }
     public function addshopcart(){
-        $m = M(mycart);
-        $id = I('post.goods_id');
-        dump(I('post.'));
-        $cart_info = $m->where('mycart_goods_id='.$id)->find();
-        dump($cart_info);
+
+        $goodsid = trim(I('param.goodsid'));
+        $num = trim(I('param.num'));
+        $isgoods = trim(I('param.isgoods'));
+        $uid = session('uid');
+        // $cart_info = $m->where('mycart_goods_id='.$id)->find();
+        // dump($cart_info);
         // exit;
-        if ($cart_info['mycart_goods_id'] == $id) {
-            // echo $quantity;
-            // $data['mycart_goods_id'] = $id;
-            // echo $cart_info['mycart_quantity'];
-            // echo "<hr/>";
-            $new_quantity = $cart_info['mycart_quantity'] + 1;
-            // echo $new_quantity;
+        $ShopcartModel = D('Shopcart');
+        $res = $ShopcartModel->isInShopcart($uid,$goodsid);
 
-            // $data['mycart_createtime'] = time();
-            $res = $m->where('mycart_id='.$cart_info[mycart_id])->setField('mycart_quantity',$new_quantity);
-            // $res = $m->save($data);
-            if ($res > 0) {
-                echo "添加成功";
-                $status  = 1;
-                if (IS_AJAX) {
-                  $this->ajaxReturn($status,"json");
-                }
-            } else {
-                echo "失败";
-            }
-        } else {
-            $data['mycart_goods_id'] = $id;
-            $data['mycart_quantity'] = 1;
-            $data['mycart_createtime'] = time();
+            //
+        if ($res === 1) { //如果已经在数据库 则更新
+          if ($isgoods) {
+            $r = $ShopcartModel->updateShopcart($uid,$goodsid,$num,$isgoods);
+          } else {
+            $r = $ShopcartModel->updateShopcart($uid,$goodsid,$num,null);
+          }
 
-            $res = $m->add($data);
-            if ($res > 0) {
-                echo "添加成功";
-                $status  = 1;
-                if (IS_AJAX) {
-                  $this->ajaxReturn($status,"json");
-                }
-            } else {
-                echo "失败";
-            }
+        } else { //如果没有在数据库 则添加
+          $r = $ShopcartModel->createShopcart($uid,$goodsid,$num);
         }
 
-
-        // exit;
-
+        if ($r >0 ) {
+          echo "1";
+        } else {
+          echo '0;';
+        }
 
     }
+
+    public function shopcart(){
+      // echo __URL__;
+      if (empty(session('uid'))) {
+        $this->error('您还没有登录','http://localhost/github/my_shop/index.php/Login/Index/signin');
+      }
+        $ShopcartModel = D('Shopcart');
+        $uid = session('uid');
+        $res = $ShopcartModel->getShopcart($uid);
+        // dump($res);
+        $this->assign('list',$res);
+        $this->display();
+      }
 }

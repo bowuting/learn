@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="cn">
-
+      <title>画廊</title>
     <include file="./Public/HomeCommon/head.html" />
 
 </head>
@@ -18,7 +18,7 @@
             <table class="ui basic table">
               <thead>
                 <tr>
-                  <th> <a href="__APP__/Home/Index/gallery/cid/0">全部分类</a></th>
+                  <th> <a href="__APP__/Home/Index/gallery">全部分类</a></th>
                 </tr>
               </thead>
               <tbody>
@@ -32,9 +32,8 @@
                                  &nbsp;&nbsp;&nbsp;&nbsp;  <a href="__APP__/Home/Index/gallery/cid/{$vo.goodscat_id}">|--{$vo.goodscat_name}</a>
                              </if>
 
-
                          </td>
-                         </tr>
+                      </tr>
                  </volist>
               </tbody>
             </table>
@@ -68,24 +67,21 @@
 
             <div class="ui link cards">
 
-            <volist name="goodsList" id="goodsvo">
-                <div class="card" >
-                  <!-- <div class="image"> -->
-                  <a href="__APP__/Home/Index/goods/goods_id/{$goodsvo.goods_id}"><img width="260px" height="260px" src="{$goodsvo.goods_pic}" alt="" /></a>
+                <volist name="goodsList" id="goodsvo">
+                    <div class="card" >
+                      <a href="__APP__/Home/Index/goods/goods_id/{$goodsvo.goods_id}"><img width="260px" height="260px" src="{$goodsvo.goods_pic}" alt="" /></a>
+                      <div class="content">
+                        <div class="header">{$goodsvo.goods_name}</div>
+                        <div class="description">{$goodsvo.goods_desc}</div>
+                      </div>
+                      <div class="extra content">
+                        <span class="right floated">{$goodsvo.goods_createtime|date="Y-m-d  ",###}</span>
 
-                  <!-- </div> -->
-                  <div class="content">
-                    <div class="header">{$goodsvo.goods_name}</div>
-                    <div class="description">{$goodsvo.goods_desc}</div>
-                  </div>
-                  <div class="extra content">
-                    <span class="right floated">{$goodsvo.goods_createtime|date="Y-m-d  ",###}</span>
+                        <span><i class="user icon"></i> {$goodsvo['goods_price']/100}元</span>
+                      </div>
+                    </div>
 
-                    <span><i class="user icon"></i> {$goodsvo['goods_price']/100}元</span>
-                  </div>
-                </div>
-
-            </volist>
+                </volist>
             </div>
 
         </div>
@@ -166,6 +162,18 @@
                 } else {
                     location.href="__SELF__".replace(reg,"/time/"+newvalue);
                 }
+        });
+
+        $('#searchbtn').click(function () {
+          var newvalue = $('#search').val();
+          // alert(val);
+          var oldvalue = "{$Think.get.keyword}";
+          var reg = new RegExp('/keyword/' + oldvalue);
+          if (oldvalue == "") {
+              location.href="__SELF__"+"/keyword/"+newvalue;
+          } else {
+              location.href="__SELF__".replace(reg,"/keyword/"+newvalue);
+          }
         });
 
 

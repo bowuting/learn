@@ -11,13 +11,11 @@
 <div class="ui container">
 
     <include file="./Public/HomeCommon/nav.html" />
+
     <div class="ui grid">
 
         <div class="eight wide column">
-          <form class="" action="__URL__/addshopcart" method="post">
-              <input type="hidden" id="goods_id" name="goods_id" value="{$goodsInfo['goods_id']}">
-              <input type="submit"  value="加入购物车">
-          </form>
+
           <h2 class="ui header">{$goodsInfo['goods_name']}</h2>
 
           <hr>
@@ -29,9 +27,18 @@
           <img src="{$goodsInfo['goods_pic']}" alt="" />
         </div>
           <div class="three wide column">
-            <button class="ui primary button add-shopcart-btn"><i class="add to cart icon"></i>加入购物车 </button>
+            <form class=""  method="post">
+              <button type="button" class="" id="reduce-btn">-</button>
+              <input id="num" style="width:30px" type="text" name="num" value="1"
+              data-rule="数量: required; integer; range(1~10); data-timely;">
+              <button type="button" name="add" class="" id="add-btn">+</button>
+
+              <!-- <input type="button" name="name" value="加入购物车" class="ui primary button add-shopcart-btn"> -->
+              <button type="button"class="ui primary button add-shopcart-btn"><i class="add to cart icon"></i>加入购物车 </button>
+
+              </form>
             <hr>
-            <button class="ui olive button my-shopcart-btn"><i class="add to cart icon"></i>我的购物车 </button>
+            <a  href="__URL__/shopcart"><i class="add to cart icon"></i>我的购物车</a>
 
           </div>
 
@@ -44,34 +51,48 @@
 <include file="./Public/HomeCommon/js.html" />
 <script type="text/javascript">
     $(document).ready(function(){
+
       $(".add-shopcart-btn").click(function(){
         // alert('加入购物车');
-        
+        var goodsid="{$Think.get.goods_id}";
+        var num = $('#num').val();
+        var isgoods = "1";
+
         $.post("__URL__/addshopcart",
           {
-            id:$("#goods_id").val(),
+            goodsid:goodsid,
+            num:num,
+            isgoods:isgoods
           },
-          function (status) {
-            if (status == 1) {
-              layer.open({
-              content: '添加成功',
-              btn: ['好的'],
-              yes: function(){
-                  window.location.reload()}
-              // cancel: function(){
-              //     //右上角关闭回调
-              //     window.location.reload()}
-                });
+          function (data,status) {
+
+            if (data == 1) {
+              layer.alert('添加成功');
+            } else {
+              layer.alert('添加失败');
             }
           });
           // alert('加入购物车');
       });
 
+      $("#add-btn").click(function(){
+          var val = $('#num').val();
+          val = parseInt(val);
+          val += 1;
+          $('#num').val(val);
+          // console.log(val);
 
-      $(".my-shopcart-btn").click(function(){
-          // alert('我的购物车');
+    });
 
-      });
+    $("#reduce-btn").click(function(){
+        var val = $('#num').val();
+        val = parseInt(val);
+        val -= 1;
+        $('#num').val(val);
+        // console.log(val);
+
+  });
+
 
 
     });

@@ -51,12 +51,26 @@ class ShopcartModel extends Model
 
     }
 
+    public function getShopcartUidAndGid($uid,$gid){
+      $m = M('shopcart');
+      $con['mycart_uid'] = $uid;
+      if (is_array($gid)) {
+        $con['mycart_goodsid'] =  array('in',$gid);
+      } else {
+        $con['mycart_goodsid'] = $gid;
+      }
+
+      return $result=$m->where($con)
+          ->join("LEFT JOIN x_goods ON x_goods.goods_id=x_shopcart.mycart_goodsid")
+          ->select();
+    }
 
     public function getShopcart($uid)
     {
 
         $m = M('shopcart');
         $con['mycart_uid'] = $uid;
+
 
         return $result=$m->where($con)
             ->join("LEFT JOIN x_goods ON x_goods.goods_id=x_shopcart.mycart_goodsid")

@@ -11,13 +11,12 @@
 
 <link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
-
+    <title>订单结算页</title>
 </head>
 <body>
 
 
 <div class="ui container">
-
     <br>
 <div class="ui menu">
     <a class="item" href="/github/my_shop/index.php/Home/">
@@ -62,42 +61,55 @@
     </div>
 </div>
 
+
+
+
+
     <div class="ui grid">
-        <div class="sixteenth wide column">
-          <h2>登录页面</h2>
-            <form class="" action="/github/my_shop/index.php/Login/Index/signinProcess" method="post">
-              <table class="ui table">
+        <div class="sixteen wide column">
+
+
+          <h2>订单结算页</h2>
+
+          <form class="" action="/github/my_shop/index.php/Home/Index/orderProcess" method="post">
+
+
+            <?php if(is_array($addrs)): $i = 0; $__LIST__ = $addrs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$addrone): $mod = ($i % 2 );++$i;?><div>
+                <span data-addr-id="<?php echo ($addrone["addr_id"]); ?>" class="ppp" style="border:1px solid;width:200px"><?php echo ($addrone["addr_name"]); ?> <?php echo ($addrone["addr_city"]); ?></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span> <?php echo ($addrone["addr_phone"]); ?>&nbsp;&nbsp; <?php echo ($addrone["addr_pro"]); echo ($addrone["addr_city"]); echo ($addrone["addr_qu"]); echo ($addrone["addr_address"]); ?></span>
+              </div>
+              <br><?php endforeach; endif; else: echo "" ;endif; ?>
+            <input id="addrinput" type="hidden" name="addr_id" value="">
+            <table class="ui celled table">
+              <thead>
                 <tr>
-                  <td>
-                      手机号码：
-                  </td>
-                  <td>
-                    <div id="phone"  class="ui input">
-
-                        <input type="text" name="phone"   value="">
-
-                    </div>
-                  </td>
-
-
-                <tr>
-                  <td>
-                    密码：
-                  </td>
-                  <td>
-                    <div id="" class="ui input">
-
-                        <input type="password" name="passwd"
-                        data-rule="密码: required; ">
-                    </div>
-                  </td>
+                  <th>名称</th>
+                  <th>图片</th>
+                  <th>单价</th>
+                  <th>数量</th>
                 </tr>
+              </thead>
 
+              <?php if(is_array($res)): $i = 0; $__LIST__ = $res;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><input type="text" name="gitstr" value="<?php echo ($str); ?>">
+              </tr>
+                <tr>
+                  <td><?php echo ($vo["goods_name"]); ?></td>
+                  <td><img width="50px" height="50px"src="<?php echo ($vo["goods_pic"]); ?>" alt="" /></td>
+                    <td><?php echo ($vo[goods_price]/100); ?></td>
+                  <td><?php echo ($vo["mycart_quantity"]); ?></td>
+
+                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
               </table>
 
-                <input class="ui primary button" type="submit"  value="提交">
-            </form>
+              <input type="submit" name="" value="结算">
+
+              </form>
+
+
+
         </div>
+
 
     </div>
 
@@ -115,57 +127,26 @@
 <script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    $('.ppp').click(function() {
+      // console.log('dadd');
+        $('.ppp').css('background-color','white');
+      $(this).css('background-color','red');
+      var val = $(this).attr('data-addr-id');
+      console.log(val);
+      $('#addrinput').val(val);
+    });
 
-$(document).ready(function(){
-    // layer.alert('<?php echo ($_POST['phone']); ?>');
-
-
-    function jump(wait){
-      window.setTimeout(function(){
-
-                if (wait == 0) {
-                    // $('#send_button').css("background","orangered");
-                    $('#send_button').text('发送短信验证码');
-                    $('#send_button').removeAttr('disabled','disabled');
-                    wait = 120;
-                } else {
-                    // $('#send_button').css("background","grey");
-                    $('#send_button').attr('disabled','disabled');
-                    $('#send_button').text('重新发送（'+wait+'）');
-                    wait--;
-                    jump(wait);
-                }
-
-            }, 1000);
-    }
-
-    $('#send_button').click(function(){
-      var phonenum="<?php echo ($_POST['phone']); ?>";
-
-      $.post("/github/my_shop/index.php/Login/Index/sendSms",{phonenum:phonenum},function(data,status){
-
-      //data的返回值就是php的返回值 是开发者决定
-      //status 的返回值 代表请求是否成功 success error
-
-      console.log(data);
-      console.log(status);
-
-      if (data == 1) {
-          layer.alert("发送成功,10分钟有效");
-          jump(60);
-      } else if (data == 2) {
-          layer.alert("黑名单,请联系管理员");
-      } else if (data == 3) {
-          layer.alert("今天超过5次");
-      } else if (data == 0) {
-          layer.alert("短信发送失败");
-      }
 
   });
 
-    });
 
-});
+
+
+
+
+
+
 
 
 

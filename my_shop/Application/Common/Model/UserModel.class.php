@@ -70,6 +70,15 @@ class UserModel extends Model {
             return false;
         }
     }
+    public function getUserInfo($uid){
+      $m = M('user');
+      $con['user_id'] = $uid;
+
+      $res = $m->where($con)->find();
+      return $res;
+      // var_dump($res);
+
+    }
 }
 
 ?>

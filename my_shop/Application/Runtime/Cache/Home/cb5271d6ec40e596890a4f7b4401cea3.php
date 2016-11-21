@@ -9,7 +9,7 @@
 <!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
 
 
-<link rel="stylesheet"	href="//cdn.bowuting.com/nice/dist/jquery.validator.css">
+<link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
 
 </head>
@@ -17,14 +17,15 @@
 
 
 <div class="ui container">
-    <div class="ui menu">
+    <br>
+<div class="ui menu">
     <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
     <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery">
         商品列表
     </a>
     <?php
@@ -38,21 +39,26 @@
 
     <?php  } else { ?>
 
-      
       <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
           登出
+      </a>
+      <a  class="item" href="/github/my_shop/index.php/Login/Index/me">
+          个人中心
       </a>
     <?php  } ?>
 
     <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>
 
-    <form class="item" action="/github/my_shop/index.php/Home/Index/gallery/" method="get">
+    <!-- <form class="item" action="/github/my_shop/index.php/Home/Index/gallery" method="get">
+      <div class="ui input">
+          <input id="search" type="text"  name="keyword" placeholder="Search...">
+          <button id="searchbtn" type="submit" class="ui basic button">商品搜索</button>
+      </div>
+    </form> -->
     <div class="ui input">
-        <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品名搜索</button>
+      <input id="search" type="text"  name="keyword" placeholder="Search...">
+      <a id="searchbtn" href="javascript:void(0)" class="ui basic button">搜索</a>
     </div>
-    </form>
-
 </div>
 
 
@@ -62,7 +68,7 @@
  	          <p>名字 : <input type="text" ng-model="name"></p>
  	          <h1>Hello {{name}}</h1>
           </div> -->
-          <form class="" action="index.html" method="post">
+          <form class="" action="/github/my_shop/index.php/Home/Index/order" method="post">
               <table class="ui celled table">
                 <thead>
                   <tr>
@@ -81,8 +87,9 @@
 
                 <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                     <td>
-                        <input type="checkbox" data-check="<?php echo ($vo["goods_id"]); ?>" class="checkbox">
+                        <input type="checkbox" data-check="<?php echo ($vo["goods_id"]); ?>" class="checkbox n_check" name="ch[]" value="<?php echo ($vo["goods_id"]); ?>">
                     </td>
+                    <!-- <input type="hidden" name="goods_id" value="<?php echo ($vo["goods_id"]); ?>"> -->
                     <td>
                       <?php echo ($vo["goods_name"]); ?>
                     </td>
@@ -91,6 +98,7 @@
                     </td>
                     <td>
                       <p data-onePrice="<?php echo ($vo["goods_id"]); ?>" >
+                        <!-- <input type="hidden" name="goods_price" value="<?php echo ($vo['goods_price']); ?>"> -->
                         <?php echo ($vo['goods_price']/100); ?>
                       </p>
                     </td>
@@ -116,8 +124,20 @@
                     </span>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="6">
+                    <span style="float: right">
+                      <input type="submit"  value="结算submit">
+                      <!-- <button type="button" class="orderbtn" name="button">结算</button> -->
+                    </span>
+                  </td>
+                </tr>
               </table>
+
           </form>
+
+          <!-- <button type="button" class="" name="button">结算</button> -->
+
         </div>
     </div>
 
@@ -131,8 +151,8 @@
 <script src="//cdn.bootcss.com/layer/2.4/layer.min.js"></script>
 
 
-<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/jquery.validator.js"></script>
-<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -148,20 +168,58 @@ $(document).ready(function(){
         var Subtotal = 0;
 
         if (con == 'add') {
-            quantity += 1;
+
+
+          $.post("/github/my_shop/index.php/Home/Index/addshopcart",
+            {
+              goodsid:goodsid,
+              num:quantity + 1,
+            },
+            function (data,status) {
+
+              if (data == 1) {
+                  quantity += 1;
+                  Subtotal = quantity * onePrice;
+
+                  $('[data-quantity="'+ goodsid + '"]').text(quantity);
+                  $('[data-subtotal="'+ goodsid + '"]').text(Subtotal);
+              } else {
+                layer.alert('添加失败');
+              }
+            });
+
+
+
         } else {
           if (quantity <= 1) {
             layer.alert('不能再减了~');
             return false;
           }
-            quantity -= 1;
+
+
+          $.post("/github/my_shop/index.php/Home/Index/addshopcart",
+            {
+              goodsid:goodsid,
+              num:quantity - 1,
+            },
+            function (data,status) {
+
+              if (data == 1) {
+                quantity -= 1;
+                Subtotal = quantity * onePrice;
+
+                  $('[data-quantity="'+ goodsid + '"]').text(quantity);
+                  $('[data-subtotal="'+ goodsid + '"]').text(Subtotal);
+              } else {
+                layer.alert('添加失败');
+              }
+            });
 
         }
+        // Subtotal = quantity * onePrice;
+        //         $('[data-quantity="'+ goodsid + '"]').text(quantity);
+        //         $('[data-subtotal="'+ goodsid + '"]').text(Subtotal);
 
-        Subtotal = quantity * onePrice;
-
-        $('[data-quantity="'+ goodsid + '"]').text(quantity);
-        $('[data-subtotal="'+ goodsid + '"]').text(Subtotal);
     }
 
 
@@ -196,7 +254,9 @@ $(document).ready(function(){
 
               allPrice += subtotalPrice;
 
-            }});
+            }
+
+          });
 
           $('#all-price').text(allPrice);
       }
@@ -204,12 +264,24 @@ $(document).ready(function(){
       $(".checkbox-all").click(function(){
         if($(this).is(':checked')){
 
-              var isAll = $(this).attr('data-check');
-              if (isAll == 'all') {
+              var isAll = $(this).is(":checked");
 
-                $('input:checkbox').attr("checked",'checked');
-                // console.log(isAll);
-              }
+              if(isAll){
+               //选择了
+               $(".n_check").prop("checked", true);
+           }
+          //  else{
+          //      $(".n_check").prop("checked", false);
+          //  }
+
+              // if (isAll == 'all') {
+              //   console.log('dad');
+              //   // location.reload();
+              //
+              //   $('.n_check').attr("checked",'checked');
+              //
+              //   // console.log(isAll);
+              // }
 
             }
             allPrice();
@@ -225,7 +297,63 @@ $(document).ready(function(){
           });
 
 
-
+          // $('.orderbtn').click(function(){
+          //   var arr = new Array();  ;
+          //   var  i = 0;
+          //    $(".checkbox").each(function () {
+          //      if($(this).is(':checked')){
+          //          var goodsid = $(this).attr('data-check');
+          //          arr[i] = goodsid;
+          //          i += 1;
+          //        }
+          //   });
+          //
+          //
+          //   var str = JSON.stringify(arr);
+          //
+          //   // console.log(str);
+          //   // console.log(goodsid);
+          //
+          //
+          //
+          //            $.post("/github/my_shop/index.php/Home/Index/order",
+          //              {
+          //                goodsids:str,
+          //              },
+          //             //  dataType:"json",
+          //             //  contentType:"application/json",
+          //              function (data,status) {
+          //
+          //                console.log(data);
+          //                return false;
+          //
+          //                 if (data == 1) {
+          //                   layer.open({                              // 更新  打开弹窗
+          //                     type: 2,
+          //                     skin: 'layui-layer-rim',
+          //                     title:'结算',
+          //                     area: ['1200px', '900px'],
+          //                     // shadeClose: true, //点击遮罩关闭
+          //                      content: '/github/my_shop/index.php/Home/Index/orderProcess',
+          //                     closeBtn: 2,
+          //                   shift: 0,
+          //                   maxmin: true,
+          //                   moveType: 0,
+          //                     //content: '/github/my_shop/index.php/Admin/index/createGoodsCat',
+          //                   cancel:function() {
+          //                       location.reload();
+          //                     }
+          //                   });
+          //                 }
+          //
+          //
+          //              });
+          //
+          //
+          //
+          //
+          //
+          // });
 
 
 

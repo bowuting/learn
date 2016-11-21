@@ -79,7 +79,7 @@ class IndexController extends Controller {
 
         $goodsid = trim(I('param.goodsid'));
         $num = trim(I('param.num'));
-        $isgoods = trim(I('param.isgoods'));
+        $isgoods = trim(I('param.isgoods'));  //商品是否存在
         $uid = session('uid');
         // $cart_info = $m->where('mycart_goods_id='.$id)->find();
         // dump($cart_info);
@@ -119,4 +119,48 @@ class IndexController extends Controller {
         $this->assign('list',$res);
         $this->display();
       }
+
+      public function order(){
+        dump(I('post.'));
+        $gid = I('post.ch');
+        $uid = session('uid');
+        $shopcart = D('Shopcart');
+        $res = $shopcart->getShopcartUidAndGid($uid,$gid);
+        // dump($res);
+        // dump($uid);
+        // dump($gid);
+        $this->assign('res',$res);
+
+        $addr =  M('addr');
+        $con['addr_uid'] = $uid;
+        $addrs = $addr->where($con)->select();
+        $this->assign('addrs',$addrs);
+
+        $str=implode('..',$gid);
+        $this->assign('str',$str);
+
+        $this->display();
+        // dump(I('post.'));
+
+      }
+
+      public function orderProcess()
+      {
+        $gidstr = I('post.gitstr');
+        $addr_id = I('post.addr_id');
+        $uid = session('uid');
+        // $array=explode(separator,$string);
+        $arr = explode('..',$gidstr);
+        dump($uid);
+        dump($arr);
+        dump($addr_id);
+      }
+
+
+      public function test(){
+        dump($_SESSION);
+        dump(json_decode(session('str'),true));
+      }
+
+
 }

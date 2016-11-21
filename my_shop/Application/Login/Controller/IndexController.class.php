@@ -205,6 +205,51 @@ class IndexController extends Controller {
       }
     }
 
+    public function me(){
+        if (session('uid')) {
+          $uid =  session('uid');
+          $user = D('User');
+          $info = $user->getUserInfo($uid);
+          $this->assign('info',$info);
+          //  dump($info);
+
+          $m = M('addr');
+          $con['addr_uid'] = $uid;
+          $list = $m->where($con)->select();
+          // dump($list);
+          $this->assign('list',$list);
+
+          $this->display();
+        } else {
+          $this->redirect('Login/Index/signin');
+        }
+    }
+
+    public function addaddress()
+    {
+      $Addr = D('Addr');
+
+      if (!$Addr->create($_POST,1)) {
+          $this->error($GoodsModel->getError());
+      } else {
+
+          $result=$Addr->add();
+          if($result>0){
+
+            echo "1";
+
+              // $this->success("新增成功");
+              // exit;
+          } else {
+
+              $this->error("新增失败");
+              exit;
+          }
+      }
+
+
+    }
+
 
 
 

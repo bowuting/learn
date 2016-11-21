@@ -2,7 +2,7 @@
 
 #后台
 
-    ###分类管理
+    ### 分类管理
               * 1、>thinkPHP的三大自动
               <pre><code>
                 class GoodsCatModel extends Model {
@@ -57,8 +57,35 @@
               </code></pre>
 
       商品管理
-              1、取商品的连表查询 取出商品信息同时  还要取出商品所在分类的信息
+              1、连表查询 取出商品信息同时  还要取出商品所在分类的信息
+                ```
+                $result =  $m -> where($con)
+                    ->order($o)
+                    ->join("LEFT JOIN x_goods_cat ON x_goods_cat.goodscat_id = x_goods.goods_cid")
+                    ->select();
+                ```
+
               2、二维数组的排序
+              ```
+              if ($time) {
+                      foreach ($result as $k => $v) {
+                          $result[$k]['quality'] = $v['goods_createtime'] + $v['goods_qualitytime'] * 86400;
+
+                      }
+                      $quality = array();
+                      foreach ($result as $v){
+
+                          $quality[] = $v['quality'];
+
+                      }
+                      if ($time == 'desc') {
+                          array_multisort($quality,SORT_DESC,$result);
+                      } else if ($time == 'asc') {
+                          array_multisort($quality,SORT_ASC,$result);
+                      }
+
+                  }
+              ```
 
       用户管理
 

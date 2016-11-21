@@ -44,6 +44,9 @@
       <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
           登出
       </a>
+      <a  class="item" href="/github/my_shop/index.php/Login/Index/me">
+          个人中心
+      </a>
     <?php  } ?>
 
     <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>

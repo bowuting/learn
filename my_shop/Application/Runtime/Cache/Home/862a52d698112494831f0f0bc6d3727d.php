@@ -9,7 +9,7 @@
 <!-- <link href="//cdn.bootcss.com/layer/2.4/skin/layer.css" rel="stylesheet"> -->
 
 
-<link rel="stylesheet"	href="//cdn.bowuting.com/nice/dist/jquery.validator.css">
+<link rel="stylesheet"	href="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.css">
 
 
 </head>
@@ -18,14 +18,15 @@
 
 <div class="ui container">
 
-    <div class="ui menu">
+    <br>
+<div class="ui menu">
     <a class="item" href="/github/my_shop/index.php/Home/">
         首页
     </a>
     <a class="item" href="/github/my_shop/index.php/admin/">
         后台
     </a>
-    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery/cid/0">
+    <a class="item" href="/github/my_shop/index.php/Home/Index/gallery">
         商品列表
     </a>
     <?php
@@ -42,17 +43,23 @@
       <a class="item" href="/github/my_shop/index.php/Login/Index/signout">
           登出
       </a>
+      <a  class="item" href="/github/my_shop/index.php/Login/Index/me">
+          个人中心
+      </a>
     <?php  } ?>
 
     <a  class="item" href="/github/my_shop/index.php/Home/Index/shopcart">我的购物车</a>
 
-    <form class="item" action="/github/my_shop/index.php/Home/Index/gallery/cid/0/" method="get">
+    <!-- <form class="item" action="/github/my_shop/index.php/Home/Index/gallery" method="get">
+      <div class="ui input">
+          <input id="search" type="text"  name="keyword" placeholder="Search...">
+          <button id="searchbtn" type="submit" class="ui basic button">商品搜索</button>
+      </div>
+    </form> -->
     <div class="ui input">
-        <input type="text"  name="keyword" placeholder="Search...">
-        <button type="submit" class="ui basic button">商品搜索</button>
+      <input id="search" type="text"  name="keyword" placeholder="Search...">
+      <a id="searchbtn" href="javascript:void(0)" class="ui basic button">搜索</a>
     </div>
-    </form>
-
 </div>
 
 
@@ -98,8 +105,8 @@
 <script src="//cdn.bootcss.com/layer/2.4/layer.min.js"></script>
 
 
-<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/jquery.validator.js"></script>
-<script type="text/javascript" src="//cdn.bowuting.com/nice/dist/local/zh-CN.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/jquery.validator.js"></script>
+<script type="text/javascript" src="//cdnsh.bowuting.com/cdn/nice-validator/dist/local/zh-CN.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

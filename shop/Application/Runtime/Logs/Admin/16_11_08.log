@@ -1,9 +1,0 @@
-[ 2016-11-08T20:24:19+08:00 ] ::1 /github/shop/admin/
-INFO: [ app_init ] --START--
-INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
-INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
-INFO: [ app_begin ] --START--
-INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000475s ]
-INFO: [ app_begin ] --END-- [ RunTime:0.000619s ]
-ERR: SQLSTATE[HY000] [1049] Unknown database 'shop'
-

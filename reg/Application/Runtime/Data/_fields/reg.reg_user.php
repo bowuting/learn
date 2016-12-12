@@ -1,1 +1,0 @@
-a:8:{i:0;s:4:"name";i:1;s:5:"stuid";i:2;s:7:"college";i:3;s:3:"tel";i:4;s:5:"email";i:5;s:11:"create_time";s:3:"_pk";s:5:"stuid";s:5:"_type";a:6:{s:4:"name";s:11:"varchar(30)";s:5:"stuid";s:11:"varchar(30)";s:7:"college";s:11:"varchar(50)";s:3:"tel";s:11:"varchar(30)";s:5:"email";s:11:"varchar(50)";s:11:"create_time";s:7:"int(11)";}}
